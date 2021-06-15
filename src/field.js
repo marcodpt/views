@@ -70,6 +70,7 @@ const select = ({
   }, [
     h('option', {
       value: value == null ? '' : value,
+      selected: true,
       disabled: true
     }, text(options ? (placeholder || '\u2304') : '\u231B'))
   ]))
