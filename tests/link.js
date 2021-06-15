@@ -30,15 +30,6 @@ export default [
         "simple clickable"
       ], [
         {
-          title: "Hello\nWorld!",
-          click: modal('Hello World!')
-        },
-        `<span
-          style="cursor: pointer; white-space: pre-wrap;"
-        >Hello\nWorld!</span>`,
-        "clickable long title"
-      ], [
-        {
           type: "primary"
         },
         `<button class="btn btn-primary disabled"/>`,

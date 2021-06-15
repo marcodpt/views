@@ -2,6 +2,20 @@ import {h, text} from 'https://unpkg.com/hyperapp'
 import {fas, spinner} from './icon.js'
 import link from './link.js'
 
+const change = callback => (state, ev) => {
+  const v = ev.target.value
+  return [state, [
+    (dispatch, ev) => {
+      setTimeout(() => {
+        if (ev.target.value === v) {
+          dispatch(state => callback(state, ev))
+        }
+      }, 200)
+    },
+    ev
+  ]]
+}
+
 const select = ({
   name,
   value,
@@ -12,14 +26,18 @@ const select = ({
   change
 }) => 
   h('select', {
-    class: 'form-control'+(status || ''),
+    class: [
+      'form-control',
+      status
+    ],
     name: name,
     disabled: disabled || options == null,
-    onchange: change
+    onchange: change,
+    value: value == null ? '' : value
   }, (options || []).reduce((O, o, i) => {
     var s = false
     var val = null
-    var txt = ''
+    var lbl = ''
     if (o && typeof o == 'object') {
       if (o.value != null) {
         val = o.value
@@ -27,37 +45,33 @@ const select = ({
         val = o.id
       }
 
-      if (o.text != null) {
-        txt = o.text
+      if (o.label != null) {
+        lbl = o.label
       } else if (o.id_ != null) {
-        txt = o.id_
+        lbl = o.id_
       } else {
-        txt = val
+        lbl = val
       }
     } else {
       val = o
-      txt = o == null ? '' : o
+      lbl = o == null ? '' : o
     }
-    txt = String(txt)
-    if (O.length > i && (value != null && String(value) == String(val))) {
+    if (O.length > i && (value != null && value == val)) {
       O.shift()
       s = true
     }
     O.push(
       h('option', {
         value: val,
-        selected: s
-      }, text(txt))
+        label: lbl
+      })
     )
     return O
   }, [
     h('option', {
-      value: value,
-      selected: true,
+      value: value == null ? '' : value,
       disabled: true
-    }, options ? (placeholder ? text(placeholder) : fas({
-      name: 'hand-pointer'
-    })) : spinner())
+    }, text(options ? (placeholder || '\u2304') : '\u231B'))
   ]))
 
 const textarea = ({
@@ -70,13 +84,17 @@ const textarea = ({
   change
 }) => 
   h('textarea', {
-    class: 'form-control'+(status || ''),
+    class: [
+      'form-control',
+      status
+    ],
     name: name,
     placeholder: placeholder,
     rows: rows || 6,
     disabled: disabled,
-    oninput: change
-  }, text(value))
+    oninput: change,
+    value: value
+  })
 
 const input = ({
   name,
@@ -86,68 +104,72 @@ const input = ({
   status,
   type,
   change,
-  checked
-}) => 
-  h('input', {
-    class: (type == 'checkbox' ? 'form-check-input' : 'form-control')+
-      (status || ''),
-    type: type || 'text',
+  checked,
+  step
+}) => {
+  const isCheck = [
+    'checkbox',
+    'radio'
+  ].indexOf(type) != -1
+
+  const isChange = [
+    'file',
+    'files',
+    'date',
+    'range'
+  ].indexOf(type) != -1
+
+  return h('input', {
+    class: [
+      (isCheck ? 'form-check-input' : 'form-control'),
+      !isCheck ? status : null
+    ],
+    type: type == 'files' ? 'file' : (type || 'text'),
     value: value,
     name: name,
-    placeholder: placeholder,
+    placeholder: isCheck ? null : placeholder,
     disabled: disabled,
-    oninput: type == 'checkbox' ? null : change,
-    onclick: type == 'checkbox' ? change : null,
-    checked: checked
+    onchange: isChange ? change : null,
+    oninput: isCheck || isCheck ? null : change,
+    onclick: isCheck ? change : null,
+    checked: isCheck ? checked : null,
+    multiple: type == 'files' ? true : null
   })
+}
 
-export default ({
-  name,
-  type,
-  placeholder,
-  value,
-  href,
-  options,
-  error,
-  disabled,
-  change,
-  rows
-}) => {
-  const status = error == null ? '' : (' is-'+(error ? 'in' : '')+'valid')
-  if (name == null) {
-    return link({
-      title: String(value),
-      href: typeof href == 'string' && href.length ? href : null
-    })
-  } else if (options !== undefined) {
+export default (X) => {
+  const P = [
+    'name',
+    'placeholder',
+    'disabled',
+    'value',
+    'change'
+  ].reduce((P, key) => {
+    if (X[key] != null) {
+      P[key] = X[key]
+    }
+    return P
+  }, {})
+  if (X.error != null) {
+    P.status = 'is-'+(X.error ? 'in' : '')+'valid'
+  }
+
+  if (X.options !== undefined) {
     return select({
-      name,
-      placeholder,
-      value,
-      status,
-      options,
-      disabled,
-      change
+      ...P,
+      options: X.options
     })
-  } else if (type == 'textarea') {
+  } else if (X.type == 'textarea') {
     return textarea({
-      name,
-      placeholder,
-      value,
-      status,
-      disabled,
-      change,
-      rows
+      ...P,
+      rows: X.rows
     })
   } else {
     return input({
-      name,
-      type,
-      placeholder,
-      value,
-      status,
-      disabled,
-      change
+      ...P,
+      type: X.type,
+      step: X.step,
+      checked: X.checked
     })
   }
 }

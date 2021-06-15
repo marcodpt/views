@@ -21,8 +21,7 @@ export default ({
 
   return h(href ? 'a' : (type ? 'button' : 'span'), {
     style: {
-      cursor: !type && (dropdown || click) ? 'pointer' : null,
-      whiteSpace: title && title.indexOf("\n") != -1 ? 'pre-wrap' : null
+      cursor: !type && (dropdown || click) ? 'pointer' : null
     },
     class: [
       type ? 'btn btn-'+type : '',
