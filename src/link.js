@@ -27,9 +27,8 @@ export default ({
       type ? 'btn btn-'+type : '',
       size && type ? 'btn-'+size : '',
       pending || (type && !href && !click && !dropdown) ? 'disabled' : '',
-      dropdown ? 'dropdown-toggle' : '',
-      cls ? cls : null
-    ], 
+      dropdown ? 'dropdown-toggle' : ''
+    ].concat(cls), 
     onclick: pending ? null : click,
     onblur: pending ? null : blur,
     href: typeof href == 'string' && href.length ? href : null,

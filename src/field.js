@@ -1,5 +1,4 @@
 import {h, text} from 'https://unpkg.com/hyperapp'
-import {fas, spinner} from './icon.js'
 import link from './link.js'
 
 const change = callback => (state, ev) => {
@@ -106,7 +105,9 @@ const input = ({
   type,
   change,
   checked,
-  step
+  step,
+  min,
+  max
 }) => {
   const isCheck = [
     'checkbox',
@@ -119,6 +120,23 @@ const input = ({
     'date',
     'range'
   ].indexOf(type) != -1
+
+  const isRange = [
+    'number',
+    'date',
+    'range'
+  ]
+
+  const N = {}
+  if (step != null) {
+    N.step = step
+  }
+  if (min != null) {
+    N.min = min
+  }
+  if (max != null) {
+    N.max = max
+  }
 
   return h('input', {
     class: [
@@ -134,7 +152,8 @@ const input = ({
     oninput: isCheck || isCheck ? null : change,
     onclick: isCheck ? change : null,
     checked: isCheck ? checked : null,
-    multiple: type == 'files' ? true : null
+    multiple: type == 'files' ? true : null,
+    ...N
   })
 }
 
@@ -170,6 +189,8 @@ export default (X) => {
       ...P,
       type: X.type,
       step: X.step,
+      min: X.min,
+      max: X.max,
       checked: X.checked
     })
   }

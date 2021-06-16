@@ -6,7 +6,9 @@ export default ({
   fixed,
   expand,
   type,
+  home,
   image,
+  imageHeight,
   title,
   current,
   items
@@ -19,24 +21,25 @@ export default ({
         'navbar-expand'+(typeof expand == 'string' ? '-'+expand : ''),
       'navbar-'+(whiteText ? 'dark' : 'light'),
       'bg-'+(type || 'light')
-    ].join(" ")
+    ]
   }, [
     h('div', {
       class: 'container-fluid'
     }, [
       !image ? null : h('a', {
         class: 'navbar-brand',
-        href: '#'
+        href: home
       }, [
         h('img', {
           src: image,
+          alt: title,
           title: title,
-          height: '25',
+          height: imageHeight,
         })
       ]),
       image || !title ? null : h('a', {
         class: 'navbar-brand',
-        href: '#'
+        href: home
       }, text(title)),
       !current ? null : h('span', {
         class: 'navbar-text'
@@ -44,48 +47,43 @@ export default ({
       h('button', {
         class: 'navbar-toggler',
         'data-bs-toggle': 'collapse',
-        'data-bs-target': '#navbarSupportedContent'
+        'data-bs-target': '.navbar-collapse'
       }, [
         h('span', {
           class: 'navbar-toggler-icon'
         })
       ]),
       h('div', {
-        id: 'navbarSupportedContent',
         class: 'collapse navbar-collapse'
       }, [
         h('ul', {
           class: 'navbar-nav ms-auto'
-        }, (items || []).map(item => {
-          if (item.items) {
-            return !item.items.length ? null : h('li', {
-              class: 'nav-item dropdown'
-            }, [
-              link({
-                ...item,
-                nav: true,
-                dropdown: true
-              }),
-              h('ul', {
-                class: 'dropdown-menu'
-              }, item.items.map(function (item) {
-                return h('li', {
-                  class: 'nav-item'
-                }, [
-                  link({
-                    ...item,
-                    item: true
-                  })
-                ])
-              }))
-            ])
-          } else {
-            return link({
+        }, (items || []).map(item =>
+          item.items ? !item.items.length ? null : h('li', {
+            class: 'nav-item dropdown'
+          }, [
+            link({
               ...item,
-              nav: true
-            })
-          }
-        }))
+              nav: true,
+              dropdown: true
+            }),
+            h('ul', {
+              class: 'dropdown-menu'
+            }, item.items.map(function (item) {
+              return h('li', {
+                class: 'nav-item'
+              }, [
+                link({
+                  ...item,
+                  item: true
+                })
+              ])
+            }))
+          ]) : link({
+            ...item,
+            nav: true
+          })
+        ))
       ])
     ])
   ])

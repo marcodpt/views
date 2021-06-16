@@ -1,25 +1,26 @@
 import {h, text} from 'https://unpkg.com/hyperapp'
 import {field} from '../index.js'
 
-const alerter = msg => (state, ev) => {
-  return [state, [
-    (d, e) => alert(msg(ev.target))
-  ]]
+const showVal = (state, ev) => {
+  return [state, [() => alert(ev.target.value)]]
 }
 
-const showVal = alerter(e => e.value)
-
-const showFiles = alerter(e => {
+const showFiles = (state, ev) => {
+  const F = ev.target.files
   const M = ['Files selected: ']
-  for (var i = 0; i < e.files.length; i++) {
-    M.push(e.files[i].name)
+  for (var i = 0; i < F.length; i++) {
+    M.push(F[i].name)
   }
-  return M.join('\n')
-})
+  const msg = M.join('\n')
+  return [state, [() => alert(msg)]]
+}
 
-const showCheck = alerter(
-  e => 'You '+(e.checked ? '' : 'un')+'check me: '+e.value
-)
+const showCheck = (state, ev) => {
+  const e = ev.target
+  return [state, [
+    () => alert('You '+(e.checked ? '' : 'un')+'check me: '+e.value)
+  ]]
+}
 
 export default [
   [
@@ -227,6 +228,7 @@ export default [
           type="number"
           name="test"
           placeholder="..."
+          step="0.1"
         />`,
         "number input"
       ], [
@@ -243,6 +245,7 @@ export default [
           type="number"
           name="test"
           placeholder=""
+          step="0.1"
         />`,
         "changeable number input"
       ], [
@@ -261,6 +264,7 @@ export default [
           name="test"
           placeholder=""
           disabled
+          step="0.1"
         />`,
         "disabled number input"
       ], [
@@ -268,6 +272,8 @@ export default [
           name: "test",
           type: "range",
           step: 1,
+          min: 3,
+          max: 12,
           placeholder: "..."
         },
         `<input
@@ -275,6 +281,9 @@ export default [
           type="range"
           name="test"
           placeholder="..."
+          step="1"
+          min="3"
+          max="12"
         />`,
         "range input"
       ], [
@@ -282,6 +291,8 @@ export default [
           name: "test",
           type: "range",
           step: 1,
+          min: 3,
+          max: 12,
           value: 9,
           onchange: showVal,
           placeholder: "",
@@ -292,6 +303,9 @@ export default [
           type="range"
           name="test"
           placeholder=""
+          step="1"
+          min="3"
+          max="12"
         />`,
         "changeable range input"
       ], [
@@ -299,6 +313,8 @@ export default [
           name: "test",
           type: "range",
           step: 1,
+          min: 3,
+          max: 12,
           value: 9,
           onchange: showVal,
           placeholder: "",
@@ -311,6 +327,9 @@ export default [
           name="test"
           placeholder=""
           disabled
+          step="1"
+          min="3"
+          max="12"
         />`,
         "disabled range input"
       ], [

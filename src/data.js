@@ -6,17 +6,18 @@ export default ({
   name,
   href,
   encoding,
+  type,
   title,
   src
 }) => {
-  const type = mime ? mime.split('/').shift() : ''
+  const M = mime ? mime.split('/').shift() : ''
   data = data == null ? '' : String(data)
   if (!src && data) {
     src = 'data:'+(mime || 'text/plain')+";"+
       (encoding || 'charset=utf-8')+','+encodeURIComponent(data || '')
   }
 
-  if (type == 'image' && src) {
+  if (M == 'image' && src) {
     const img = h('img', {
       class: 'w-100',
       src: src,
@@ -26,7 +27,7 @@ export default ({
     return href ? h('a', {
       href: href
     }, img) : img
-  } else if (type == 'video' && src) {
+  } else if (M == 'video' && src) {
     return h('video', {
       class: 'w-100',
       controls: true,
@@ -37,7 +38,7 @@ export default ({
         type: mime
       })
     ])
-  } else if (type == 'audio' && src) {
+  } else if (M == 'audio' && src) {
     return h('audio', {
       class: 'w-100',
       controls: true,
@@ -63,6 +64,11 @@ export default ({
     if (src && name) {
       P.download = name
     }
-    return h(href || name ? 'a' : 'span', P, text(name ? title : data))
+    const el = h(href || name ? 'a' : 'span', P, text(name ? title : data))
+
+    return !type ? el : h('div', {
+      class: 'alert alert-'+type,
+      role: 'alert'
+    }, el)
   }
 }

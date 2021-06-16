@@ -1,0 +1,676 @@
+import {h, text} from 'https://unpkg.com/hyperapp'
+import {form} from '../index.js'
+
+const html = str => str.replace(/>[\s\r\n]*</g, "><").trim()
+
+const back = state => {
+  return [state, [() => alert("back")]]
+}
+
+const submit = state => {
+  return [state, [() => alert("submit")]]
+}
+
+const blur = state => {
+  return [state, [() => alert("blur")]]
+}
+
+export default [
+  [
+    "form",
+    (params) => form()(params),
+    [
+      [
+        {},
+        html(`
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="text-center">
+                  <i class="fas fa-spinner fa-spin fa-5x"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        `),
+        "no params"
+      ], [
+        {
+          title: "test form"
+        },
+        html(`
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">test form</h5>
+              </div>
+              <div class="modal-body">
+                <div class="text-center">
+                  <i class="fas fa-spinner fa-spin fa-5x"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        `),
+        "simple title"
+      ], [
+        {
+          back: back
+        },
+        html(`
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="text-center">
+                  <i class="fas fa-spinner fa-spin fa-5x"></i>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "back"
+      ], [
+        {
+          title: "test form",
+          back: back
+        },
+        html(`
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">test form</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <div class="text-center">
+                  <i class="fas fa-spinner fa-spin fa-5x"></i>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "back with title"
+      ], [
+        {
+          title: "alert",
+          back: back,
+          Data: {
+            type: 'danger',
+            data: [
+              'This is a very long message to test the size of the modal.',
+              'Also I want to test the line break'
+            ].join('\n')
+          }
+        },
+        html(`
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">alert</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <div class="alert alert-danger" role="alert">
+                  <span
+                    style="white-space: pre-wrap;"
+                  >This is a very long message to test the size of the modal.\nAlso I want to test the line break</span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "alert"
+      ], [
+        {
+          title: "confirm",
+          back: back,
+          submit: submit,
+          Data: {
+            type: 'info',
+            data: [
+              'This is a very long message to test the size of the modal.',
+              'Also I want to test the line break'
+            ].join('\n')
+          }
+        },
+        html(`
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">confirm</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <div class="alert alert-info" role="alert">
+                  <span
+                    style="white-space: pre-wrap;"
+                  >This is a very long message to test the size of the modal.\nAlso I want to test the line break</span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+                <button
+                  class="btn btn-primary"
+                ><i class="fas fa-check"></i> Submit</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "confirm"
+      ], [
+        {
+          title: "fields",
+          back: back,
+          submit: submit,
+          model: {
+            name: 'John',
+            age: 3,
+            country: 3,
+            bio: ''
+          },
+          Fields: [
+            {
+              name: 'name',
+              type: 'text',
+              title: 'Your name: ',
+              error: ''
+            }, {
+              name: 'age',
+              type: 'number',
+              step: 1,
+              title: 'Your age: ',
+              error: 'You must be at least 18'
+            }, {
+              title: 'Your country: ',
+              name: 'country',
+              options: [
+                {value: 1, label: 'USA'},
+                {value: 2, label: 'Mexico'},
+                {value: 3, label: 'Canada'}
+              ],
+              href: '#countries'
+            }, {
+              name: 'bio',
+              placeholder: 'Type something about yourself...',
+              type: 'textarea',
+              error: 'Is required!'
+            }
+          ]
+        },
+        html(`
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">fields</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="row my-3">
+                    <div class="col-md-3">
+                      <label class="form-label">Your name: </label>
+                    </div>
+                    <div class="col-md-9">
+                      <input
+                        class="form-control is-valid"
+                        type="text"
+                        name="name"
+                        placeholder=""
+                      />
+                    </div>
+                  </div>
+                  <div class="row my-3">
+                    <div class="col-md-3">
+                      <label class="form-label">Your age: </label>
+                    </div>
+                    <div class="col-md-9">
+                      <input
+                        class="form-control is-invalid"
+                        type="number"
+                        name="age"
+                        placeholder=""
+                        step="1"
+                      />
+                      <div
+                        class="invalid-feedback"
+                      >You must be at least 18</div>
+                    </div>
+                  </div>
+                  <div class="row my-3">
+                    <div class="col-md-3">
+                      <label class="form-label">Your country: </label>
+                    </div>
+                    <div class="col-md-9">
+                      <select
+                        class="form-control"
+                        name="country"
+                      >
+                        <option
+                          value="1"
+                          label="USA"
+                        ></option>
+                        <option
+                          value="2"
+                          label="Mexico"
+                        ></option>
+                        <option
+                          value="3"
+                          label="Canada"
+                        ></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row my-3">
+                    <div class="col-md-12">
+                      <textarea
+                        class="form-control is-invalid"
+                        name="bio"
+                        placeholder="Type something about yourself..."
+                        rows="6"
+                      ></textarea>
+                      <div
+                        class="invalid-feedback"
+                      >Is required!</div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+                <button
+                  class="btn btn-primary"
+                ><i class="fas fa-check"></i> Submit</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "fields"
+      ], [
+        {
+          title: "watch",
+          back: back,
+          submit: true,
+          model: {
+            country: 3
+          },
+          Fields: [
+            {
+              title: 'Your country: ',
+              name: 'country',
+              options: [
+                {value: 1, label: 'USA'},
+                {value: 2, label: 'Mexico'},
+                {value: 3, label: 'Canada'}
+              ],
+              href: '#countries'
+            }
+          ]
+        },
+        html(`
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">watch</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="row my-3">
+                    <div class="col-md-3">
+                      <label class="form-label">Your country: </label>
+                    </div>
+                    <div class="col-md-9">
+                      <select
+                        class="form-control"
+                        name="country"
+                      >
+                        <option
+                          value="1"
+                          label="USA"
+                        ></option>
+                        <option
+                          value="2"
+                          label="Mexico"
+                        ></option>
+                        <option
+                          value="3"
+                          label="Canada"
+                        ></option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "watch"
+      ], [
+        {
+          title: "static",
+          back: back,
+          model: {
+            name: 'John',
+            age: 35,
+            country: 'Canada',
+            bio: 'Hello!\nMy name is John!\nI don\'t know what to say...'
+          },
+          Fields: [
+            {
+              name: 'name',
+              type: 'text',
+              title: 'Your name: ',
+              error: ''
+            }, {
+              name: 'age',
+              type: 'number',
+              step: 1,
+              title: 'Your age: ',
+              error: 'You must be at least 18'
+            }, {
+              title: 'Your country: ',
+              name: 'country',
+              options: [
+                {value: 1, label: 'USA'},
+                {value: 2, label: 'Mexico'},
+                {value: 3, label: 'Canada'}
+              ],
+              href: '#countries'
+            }, {
+              name: 'bio',
+              placeholder: 'Type something about yourself...',
+              type: 'textarea',
+              error: 'Is required!'
+            }
+          ]
+        },
+        html(`
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">static</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="row my-3">
+                    <div class="col-3">
+                      <label class="form-label">Your name: </label>
+                    </div>
+                    <div class="col-9">
+                      <span
+                        style="white-space: pre-wrap;"
+                      >John</span>
+                    </div>
+                  </div>
+                  <div class="row my-3">
+                    <div class="col-3">
+                      <label class="form-label">Your age: </label>
+                    </div>
+                    <div class="col-9">
+                      <span
+                        style="white-space: pre-wrap;"
+                      >35</span>
+                    </div>
+                  </div>
+                  <div class="row my-3">
+                    <div class="col-3">
+                      <label class="form-label">Your country: </label>
+                    </div>
+                    <div class="col-9">
+                      <a
+                        href="#countries"
+                        style="white-space: pre-wrap;"
+                      >Canada</a>
+                    </div>
+                  </div>
+                  <div class="row my-3">
+                    <div class="col-12">
+                      <span
+                        style="white-space: pre-wrap;"
+                      >Hello!\nMy name is John!\nI don\'t know what to say...</span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "static"
+      ], [
+        {
+          back: back,
+          Data: {
+            title: 'sample.txt',
+            mime: 'text/plain',
+            data: [
+              'This is a very long message to test the size of the modal.',
+              'Also I want to test the line break'
+            ].join('\n')
+          }
+        },
+        html(`
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">sample.txt</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <span
+                  title="sample.txt"
+                  style="white-space: pre-wrap; word-break: break-all;"
+                >This is a very long message to test the size of the modal.\nAlso I want to test the line break</span>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "file"
+      ], [
+        {
+          back: back,
+          Data: {
+            title: "Girl in a jacket",
+            mime: 'image/jpeg',
+            src: "https://www.w3schools.com/tags/img_girl.jpg"
+          }
+        },
+        html(`
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Girl in a jacket</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <img
+                  class="w-100"
+                  src="https://www.w3schools.com/tags/img_girl.jpg"
+                  alt="Girl in a jacket"
+                  title="Girl in a jacket"
+                />
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "image"
+      ], [
+        {
+          back: back,
+          Data: {
+            src: "https://www.w3schools.com/tags/horse.ogg",
+            mime: "audio/ogg",
+            title: "audio sample"
+          }
+        },
+        html(`
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">audio sample</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <audio
+                  class="w-100"
+                  controls
+                  title="audio sample"
+                ><source
+                  src="https://www.w3schools.com/tags/horse.ogg"
+                  type="audio/ogg"
+                /></audio>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "audio"
+      ], [
+        {
+          back: back,
+          Data: {
+            src: "https://www.w3schools.com/tags/movie.mp4",
+            mime: "video/mp4",
+            title: "video sample"
+          }
+        },
+        html(`
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">video sample</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <video
+                  class="w-100"
+                  controls
+                  title="video sample"
+                ><source
+                  src="https://www.w3schools.com/tags/movie.mp4"
+                  type="video/mp4"
+                /></video>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "video"
+      ]
+    ]
+  ], [
+    "form pt",
+    (params) => form('pt')(params),
+    [
+      [
+        {
+          title: "confirm",
+          back: back,
+          submit: submit,
+          Data: {
+            type: 'info',
+            data: [
+              'This is a very long message to test the size of the modal.',
+              'Also I want to test the line break'
+            ].join('\n')
+          }
+        },
+        html(`
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">confirm</h5>
+                <button
+                  class="btn btn-light float-right"
+                ><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <div class="alert alert-info" role="alert">
+                  <span
+                    style="white-space: pre-wrap;"
+                  >This is a very long message to test the size of the modal.\nAlso I want to test the line break</span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Fechar</button>
+                <button
+                  class="btn btn-primary"
+                ><i class="fas fa-check"></i> Confirmar</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "confirm"
+      ]
+    ]
+  ]
+]

@@ -18,6 +18,38 @@ export default [
         "simple data"
       ], [
         {
+          data: "Hello world!\nMy name is mario!\nFrom super mario world!"
+        },
+        `<span
+          style="white-space: pre-wrap;"
+        >Hello world!\nMy name is mario!\nFrom super mario world!</span>`,
+        "long data"
+      ], [
+        {
+          data: "Hello world!",
+          type: "info"
+        },
+        `<div 
+          class="alert alert-info"
+          role="alert"
+        ><span
+          style="white-space: pre-wrap;"
+        >Hello world!</span></div>`,
+        "simple alert"
+      ], [
+        {
+          data: "Hello world!\nMy name is mario!\nFrom super mario world!",
+          type: "success"
+        },
+        `<div 
+          class="alert alert-success"
+          role="alert"
+        ><span
+          style="white-space: pre-wrap;"
+        >Hello world!\nMy name is mario!\nFrom super mario world!</span></div>`,
+        "long alert"
+      ], [
+        {
           href: "#hello"
         },
         `<a
@@ -35,6 +67,20 @@ export default [
           style="white-space: pre-wrap;"
         >Hello world!</a>`,
         "simple link"
+      ], [
+        {
+          data: "Hello world!",
+          href: "#hello",
+          type: "primary"
+        },
+        `<div
+          class="alert alert-primary"
+          role="alert"
+        ><a
+          href="#hello"
+          style="white-space: pre-wrap;"
+        >Hello world!</a></div>`,
+        "simple link alert"
       ], [
         {
           data: "Hello world!",

@@ -3,12 +3,16 @@ import icon from './tests/icon.js'
 import data from './tests/data.js'
 import link from './tests/link.js'
 import field from './tests/field.js'
+import form from './tests/form.js'
+import nav from './tests/nav.js'
 
 const Tests = []
   .concat(icon)
   .concat(data)
   .concat(link)
   .concat(field)
+  .concat(form)
+  .concat(nav)
 
 const state = {
   views: Tests.reduce((V, test) => {
@@ -29,6 +33,25 @@ const setView = (state, view) => {
   state.params = state.samples[state.view][state.sample]
   state.error = ''
   return {...state}
+}
+const source = X => {
+  const ident = A => A.join(',\n').split('\n').join('\n  ')
+  if (X instanceof Array) {
+    return !X.length ? '[]' : `[\n  ${
+      ident(X.map(x => source(x)))
+    }\n]`
+  } else if (typeof X == 'function') {
+    return X.toString()
+  } else if (X && typeof X == 'object') {
+    const K = Object.keys(X)
+    return !K.length ? '{}' : `{\n  ${
+      ident(K.map(key => `${key}: ${source(X[key])}`))
+    }\n}`
+  } else {
+    return JSON.stringify(X)
+  }
+
+  return data
 }
 
 window.addEventListener('load', () => app({
@@ -100,7 +123,7 @@ window.addEventListener('load', () => app({
               error ? 'is-invalid' : 'is-valid'
             ],
             rows: 10,
-            value: error ? params : JSON.stringify(params, undefined, 2),
+            value: error ? params : source(params),
             onchange: (state, ev) => {
               var err = null
               try {
