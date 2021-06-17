@@ -1,4 +1,4 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
+import {h, text} from '../lib.js'
 import link from './link.js'
 
 const change = callback => (state, ev) => {

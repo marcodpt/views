@@ -1,4 +1,4 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
+import {h, text} from '../lib.js'
 import {fas, spinner} from './icon.js'
 
 export default ({
@@ -24,7 +24,8 @@ export default ({
       cursor: !type && (dropdown || click) ? 'pointer' : null
     },
     class: [
-      type ? 'btn btn-'+type : '',
+      type && type != 'close' ? 'btn' : '',
+      type ? 'btn-'+type : '',
       size && type ? 'btn-'+size : '',
       pending || (type && !href && !click && !dropdown) ? 'disabled' : '',
       dropdown ? 'dropdown-toggle' : ''

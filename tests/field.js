@@ -1,4 +1,3 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
 import {field} from '../index.js'
 
 const showVal = (state, ev) => {
@@ -32,8 +31,6 @@ export default [
         `<input
           class="form-control"
           type="text"
-          name=""
-          placeholder=""
         />`,
         "no params"
       ], [
@@ -59,7 +56,6 @@ export default [
           class="form-control is-valid"
           type="text"
           name="test"
-          placeholder=""
         />`,
         "changeable text input"
       ], [
@@ -74,7 +70,6 @@ export default [
           class="form-control is-invalid"
           type="text"
           name="test"
-          placeholder=""
           disabled
         />`,
         "disabled text input"
@@ -103,7 +98,6 @@ export default [
           class="form-control is-valid"
           type="date"
           name="test"
-          placeholder=""
         />`,
         "changeable date input"
       ], [
@@ -119,7 +113,6 @@ export default [
           class="form-control is-invalid"
           type="date"
           name="test"
-          placeholder=""
           disabled
         />`,
         "disabled date input"
@@ -244,7 +237,6 @@ export default [
           class="form-control is-valid"
           type="number"
           name="test"
-          placeholder=""
           step="0.1"
         />`,
         "changeable number input"
@@ -262,7 +254,6 @@ export default [
           class="form-control is-invalid"
           type="number"
           name="test"
-          placeholder=""
           disabled
           step="0.1"
         />`,
@@ -341,9 +332,7 @@ export default [
         `<input
           class="form-check-input"
           type="checkbox"
-          value=""
           name="test"
-          placeholder=""
         />`,
         "checkbox input"
       ], [
@@ -360,7 +349,6 @@ export default [
           type="checkbox"
           value="mario"
           name="test"
-          placeholder=""
         />`,
         "checked changeable checkbox input"
       ], [
@@ -378,7 +366,6 @@ export default [
           type="checkbox"
           value="mario"
           name="test"
-          placeholder=""
           disabled
         />`,
         "checked disabled checkbox input"
@@ -391,9 +378,7 @@ export default [
         `<input
           class="form-check-input"
           type="radio"
-          value=""
           name="test"
-          placeholder=""
         />`,
         "radio input"
       ], [
@@ -410,7 +395,6 @@ export default [
           type="radio"
           value="luigi"
           name="test"
-          placeholder=""
         />`,
         "checked changeable radio input"
       ], [
@@ -428,7 +412,6 @@ export default [
           type="radio"
           value="luigi"
           name="test"
-          placeholder=""
           disabled
         />`,
         "checked disabled radio input"
@@ -457,7 +440,6 @@ export default [
           class="form-control is-valid"
           type="color"
           name="test"
-          placeholder=""
         />`,
         "changeable color input"
       ], [
@@ -473,7 +455,6 @@ export default [
           class="form-control is-invalid"
           type="color"
           name="test"
-          placeholder=""
           disabled
         />`,
         "disabled color input"

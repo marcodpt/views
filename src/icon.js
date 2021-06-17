@@ -1,4 +1,4 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
+import {h, text} from '../lib.js'
 
 const fas = ({name, spin, size}) => 
   !name || typeof name != 'string' ? null : h('i', {

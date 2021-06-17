@@ -1,4 +1,5 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
+import {h, text} from '../lib.js'
+import link from './link.js'
 
 export default ({
   data,
@@ -8,7 +9,8 @@ export default ({
   encoding,
   type,
   title,
-  src
+  src,
+  close
 }) => {
   const M = mime ? mime.split('/').shift() : ''
   data = data == null ? '' : String(data)
@@ -67,8 +69,18 @@ export default ({
     const el = h(href || name ? 'a' : 'span', P, text(name ? title : data))
 
     return !type ? el : h('div', {
-      class: 'alert alert-'+type,
+      class: [
+        'alert',
+        'alert-'+type,
+        !close ? null : 'alert-dismissible'
+      ],
       role: 'alert'
-    }, el)
+    }, [
+      el,
+      !close ? null : link({
+        type: 'close',
+        click: close
+      }) 
+    ])
   }
 }

@@ -1,7 +1,6 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
+import {html} from '../lib.js'
 import {nav} from '../index.js'
 
-const html = str => str.replace(/>[\s\r\n]*</g, "><").trim()
 const img = "https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
 
 export default [
@@ -33,7 +32,7 @@ export default [
       ], [
         {
           title: "Basic",
-          current: "home",
+          label: "home",
           items: [
             {
               title: 'Sports',
@@ -126,7 +125,7 @@ export default [
       ], [
         {
           title: "With image",
-          current: "home",
+          label: "home",
           image: img,
           imageHeight: "24",
           items: [
@@ -144,7 +143,6 @@ export default [
             <div class="container-fluid">
               <a
                 class="navbar-brand"
-                href=""
               ><img
                 src="${img}"
                 alt="With image"
@@ -176,7 +174,7 @@ export default [
       ], [
         {
           title: "With image and href",
-          current: "home",
+          label: "home",
           home: '#home',
           image: img,
           imageHeight: "24",
@@ -227,7 +225,7 @@ export default [
       ], [
         {
           title: "Fancy",
-          current: "home",
+          label: "home",
           home: '#fancy',
           fixed: 'top',
           whiteText: true,

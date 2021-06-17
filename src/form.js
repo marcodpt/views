@@ -1,4 +1,4 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
+import {h, text} from '../lib.js'
 import {spinner} from './icon.js'
 import data from './data.js'
 import link from './link.js'
@@ -10,6 +10,7 @@ export default (language) => {
 
   return ({
     title,
+    description,
     Fields,
     Data,
     Actions,
@@ -19,10 +20,12 @@ export default (language) => {
     submit,
     blur
   }) => {
-    Fields = Fields || []
-    const size = Fields.length || (Data && Data.mime) ? 'lg' : 'sm'
-    if (!title && Data && !Fields.length) {
-      title = Data.title
+    const set = X => X == null ? [] : X instanceof Array ? X : [X] 
+    Fields = set(Fields)
+    Data = set(Data)
+    const size = Fields.length || (Data.length && Data[0].mime) ? 'lg' : 'sm'
+    if (!title && Data.length && !Fields.length) {
+      title = Data[0].title
     }
 
     return h('div', {
@@ -34,23 +37,25 @@ export default (language) => {
       h('div', {
         class: 'modal-content'
       }, [
-        title == null ? null : h('div', {
+        !title && !description ? null : h('div', {
           class: 'modal-header'
         }, [
           h('h5', {
             class: 'modal-title'
           }, text(title)),
           !back ? null : link({
-            type: 'light',
-            icon: 'times',
-            cls: 'float-right',
+            type: 'close',
             click: back
           })
         ]),
         h('div', {
           class: 'modal-body'
         }, [
-          !Fields.length ? null : h('form', {
+          !description ? null : data({
+            data: description
+          })
+        ].concat(
+          !Fields.length || !model ? null : h('form', {
             onsubmit: (state, ev) => {
               ev.preventDefault()
               ev.stopPropagation()
@@ -81,12 +86,14 @@ export default (language) => {
                 }, text(f.error))
               ])
             ])
-          })),
-          !Data ? null : data(Data),
-          Data || model ? null : h('div', {
+          }))
+        ).concat(
+          !Data.length ? null : Data.map(D => data(D))
+        ).concat(
+          Data.length || model ? null : h('div', {
             class: 'text-center'
           }, spinner({size: '5x'}))
-        ]),
+        )),
         (!Actions || !Actions.length) &&
           typeof submit != 'function' && back == null ? null :
         h('div', {

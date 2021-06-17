@@ -1,4 +1,4 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
+import {h, text} from '../lib.js'
 import link from './link.js'
 
 export default ({
@@ -10,7 +10,7 @@ export default ({
   image,
   imageHeight,
   title,
-  current,
+  label,
   items
 }) =>
   h('nav', {
@@ -42,8 +42,8 @@ export default ({
         href: home,
         cls: 'navbar-brand'
       }),
-      !current ? null : link({
-        title: current,
+      !label ? null : link({
+        title: label,
         cls: 'navbar-text'
       }),
       h('button', {

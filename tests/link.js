@@ -1,4 +1,3 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
 import {link} from '../index.js'
 
 const modal = msg => state => {

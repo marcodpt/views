@@ -1,4 +1,3 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
 import {data} from '../index.js'
 
 export default [
@@ -36,6 +35,22 @@ export default [
           style="white-space: pre-wrap;"
         >Hello world!</span></div>`,
         "simple alert"
+      ], [
+        {
+          data: "Hello world!",
+          type: "info",
+          close: (state) => {
+            alert('close')
+            return state
+          }
+        },
+        `<div 
+          class="alert alert-info alert-dismissible"
+          role="alert"
+        ><span
+          style="white-space: pre-wrap;"
+        >Hello world!</span><button class="btn-close"></button></div>`,
+        "simple alert with close"
       ], [
         {
           data: "Hello world!\nMy name is mario!\nFrom super mario world!",

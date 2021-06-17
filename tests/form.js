@@ -1,7 +1,5 @@
-import {h, text} from 'https://unpkg.com/hyperapp'
+import {html} from '../lib.js'
 import {form} from '../index.js'
-
-const html = str => str.replace(/>[\s\r\n]*</g, "><").trim()
 
 const back = state => {
   return [state, [() => alert("back")]]
@@ -85,8 +83,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">test form</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <div class="text-center">
@@ -120,8 +118,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">alert</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <div class="alert alert-danger" role="alert">
@@ -158,8 +156,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">confirm</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <div class="alert alert-info" role="alert">
@@ -226,8 +224,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">fields</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <form>
@@ -240,7 +238,6 @@ export default [
                         class="form-control is-valid"
                         type="text"
                         name="name"
-                        placeholder=""
                       />
                     </div>
                   </div>
@@ -253,7 +250,6 @@ export default [
                         class="form-control is-invalid"
                         type="number"
                         name="age"
-                        placeholder=""
                         step="1"
                       />
                       <div
@@ -339,8 +335,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">watch</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <form>
@@ -424,8 +420,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">static</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <form>
@@ -480,6 +476,174 @@ export default [
         "static"
       ], [
         {
+          title: "static",
+          back: back,
+          model: null,
+          Fields: [
+            {
+              name: 'name',
+              type: 'text',
+              title: 'Your name: ',
+              error: ''
+            }, {
+              name: 'age',
+              type: 'number',
+              step: 1,
+              title: 'Your age: ',
+              error: 'You must be at least 18'
+            }, {
+              title: 'Your country: ',
+              name: 'country',
+              options: [
+                {value: 1, label: 'USA'},
+                {value: 2, label: 'Mexico'},
+                {value: 3, label: 'Canada'}
+              ],
+              href: '#countries'
+            }, {
+              name: 'bio',
+              placeholder: 'Type something about yourself...',
+              type: 'textarea',
+              error: 'Is required!'
+            }
+          ]
+        },
+        html(`
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">static</h5>
+                <button
+                  class="btn-close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="text-center">
+                  <i class="fas fa-spinner fa-spin fa-5x"></i>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "static pending"
+      ], [
+        {
+          title: "File upload",
+          description: "Quick file upload interface!",
+          submit: true,
+          back: state => {
+            alert('back')
+            return state
+          },
+          model: {},
+          Fields: [
+            {
+              type: 'files',
+              change: state => {
+                alert('change')
+                return state
+              }
+            }
+          ],
+          Data: [
+            {
+              type: 'success',
+              data: 'sample.txt: SUCCESS!',
+              close: state => {
+                alert('success')
+                return state
+              }
+            }, {
+              type: 'warning',
+              data: 'data.txt: UPDATED!',
+              close: state => {
+                alert('warning')
+                return state
+              }
+            }, {
+              type: 'danger',
+              data: 'bills.txt: ERROR!',
+              close: state => {
+                alert('danger')
+                return state
+              }
+            }
+          ]
+        },
+        html(`
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">File upload</h5>
+                <button
+                  class="btn-close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <span
+                  style="white-space: pre-wrap;"
+                >Quick file upload interface!</span>
+                <form>
+                  <div class="row my-3">
+                    <div class="col-md-12">
+                      <input
+                        class="form-control"
+                        type="file"
+                        multiple
+                      />
+                    </div>
+                  </div>
+                </form>
+                <div
+                  class="alert alert-success alert-dismissible"
+                  role="alert"
+                >
+                  <span
+                    style="white-space: pre-wrap;"
+                  >sample.txt: SUCCESS!</span>
+                  <button
+                    class="btn-close"
+                  ></button>
+                </div>
+                <div
+                  class="alert alert-warning alert-dismissible"
+                  role="alert"
+                >
+                  <span
+                    style="white-space: pre-wrap;"
+                  >data.txt: UPDATED!</span>
+                  <button
+                    class="btn-close"
+                  ></button>
+                </div>
+                <div
+                  class="alert alert-danger alert-dismissible"
+                  role="alert"
+                >
+                  <span
+                    style="white-space: pre-wrap;"
+                  >bills.txt: ERROR!</span>
+                  <button
+                    class="btn-close"
+                  ></button>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                ><i class="fas fa-times"></i> Close</button>
+              </div>
+            </div>
+          </div>
+        `),
+        "File upload"
+      ], [
+        {
           back: back,
           Data: {
             title: 'sample.txt',
@@ -496,8 +660,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">sample.txt</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <span
@@ -529,8 +693,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">Girl in a jacket</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <img
@@ -564,8 +728,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">audio sample</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <audio
@@ -601,8 +765,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">video sample</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <video
@@ -648,8 +812,8 @@ export default [
               <div class="modal-header">
                 <h5 class="modal-title">confirm</h5>
                 <button
-                  class="btn btn-light float-right"
-                ><i class="fas fa-times"></i></button>
+                  class="btn-close"
+                ></button>
               </div>
               <div class="modal-body">
                 <div class="alert alert-info" role="alert">
