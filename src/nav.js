@@ -37,13 +37,15 @@ export default ({
           height: imageHeight,
         })
       ]),
-      image || !title ? null : h('a', {
-        class: 'navbar-brand',
-        href: home
-      }, text(title)),
-      !current ? null : h('span', {
-        class: 'navbar-text'
-      }, text(current)),
+      image || !title ? null : link({
+        title: title,
+        href: home,
+        cls: 'navbar-brand'
+      }),
+      !current ? null : link({
+        title: current,
+        cls: 'navbar-text'
+      }),
       h('button', {
         class: 'navbar-toggler',
         'data-bs-toggle': 'collapse',
@@ -64,25 +66,27 @@ export default ({
           }, [
             link({
               ...item,
-              nav: true,
-              dropdown: true
+              dropdown: true,
+              cls: 'nav-link'
             }),
             h('ul', {
               class: 'dropdown-menu'
             }, item.items.map(function (item) {
-              return h('li', {
-                class: 'nav-item'
-              }, [
+              return h('li', {}, [
                 link({
                   ...item,
-                  item: true
+                  cls: 'dropdown-item'
                 })
               ])
             }))
-          ]) : link({
-            ...item,
-            nav: true
-          })
+          ]) : h('li', {
+            class: 'nav-item'
+          }, [
+            link({
+              ...item,
+              cls: 'nav-link'
+            })
+          ])
         ))
       ])
     ])
