@@ -1,10 +1,15 @@
 export default {
   en: {
-    close: 'Close',
-    submit: 'Submit' 
+    back: 'Back',
+    group: 'Group',
+    ungroup: 'Ungroup',
+    filter: 'Filter'
   },
   pt: {
-    close: 'Fechar',
-    submit: 'Confirmar'
+    back: 'Voltar',
+    group: 'Agrupar',
+    ungroup: 'Desagrupar',
+    filter: 'Filtrar',
+    download: 'Exportar'
   }
 }

@@ -4,6 +4,7 @@ import data from './tests/data.js'
 import link from './tests/link.js'
 import field from './tests/field.js'
 import form from './tests/form.js'
+import table from './tests/table.js'
 import nav from './tests/nav.js'
 
 const Tests = []
@@ -12,6 +13,7 @@ const Tests = []
   .concat(link)
   .concat(field)
   .concat(form)
+  .concat(table)
   .concat(nav)
 
 const state = {

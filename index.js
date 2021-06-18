@@ -3,7 +3,7 @@ import data from './src/data.js'
 import link from './src/link.js'
 import field from './src/field.js'
 import form from './src/form.js'
-//import table from './src/table.js'
+import table from './src/table.js'
 import nav from './src/nav.js'
 
 export {
@@ -13,6 +13,6 @@ export {
   link,
   field,
   form,
-  //table,
+  table,
   nav
 }
