@@ -1,5 +1,7 @@
 import {h, text} from '../lib.js'
 import {spinner} from './icon.js'
+import data from './data.js'
+import link from './link.js'
 import translate from '../lang/index.js'
 
 const sm = l =>
@@ -21,7 +23,7 @@ const cell = ({
       left ? null : 'text-center'
     ],
     colspan: full ? '100%' : null
-  })
+  }, content)
 
 const base = ({Heads, Rows, Cols}) => 
   h('table', {
@@ -48,10 +50,13 @@ const base = ({Heads, Rows, Cols}) =>
           type == 'inline' ? h('div', {
             class: 'row gx-1 justify-content-center'
           }, content.map(data => {
+            console.log(content)
+            console.log(data)
             return h('div', {
               class: 'col-auto'
             }, data)
-          })) : content
+          }
+          )) : content
         ]) : !Cols ? null : Cols.map(c => c && c(content, type))
       ])
     )),
@@ -109,7 +114,7 @@ export default (language) => {
         content: [!back ? null : link({
           type: 'secondary',
           icon: 'arrow-left',
-          title: '',
+          title: t('back'),
           click: back
         })].concat([] || Actions).map(action => link(action))
       },
@@ -162,7 +167,8 @@ export default (language) => {
           }),
           !search ? null : field({
             change: search('change'),
-            value: search('value')
+            value: search('value'),
+            placeholder: t('search')
           }),
           !filter ? null : link({
             icon: 'filter',

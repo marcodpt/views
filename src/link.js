@@ -20,20 +20,20 @@ export default ({
   const iconB = !after ? null : fas({name: after})
 
   return h(href ? 'a' : (type ? 'button' : 'span'), {
-    style: {
-      cursor: !type && (dropdown || click) ? 'pointer' : null
-    },
     class: [
       type && type != 'close' ? 'btn' : '',
       type ? 'btn-'+type : '',
       size && type ? 'btn-'+size : '',
       pending || (type && !href && !click && !dropdown) ? 'disabled' : '',
-      dropdown ? 'dropdown-toggle' : ''
+      dropdown ? 'dropdown-toggle' : null
     ].concat(cls), 
     onclick: pending ? null : click,
     onblur: pending ? null : blur,
     href: typeof href == 'string' && href.length ? href : null,
-    'data-bs-toggle': dropdown ? 'dropdown' : null
+    'data-bs-toggle': dropdown ? 'dropdown' : null,
+    style: {
+      cursor: !type && (dropdown || click) ? 'pointer' : null
+    }
   }, [
     iconA,
     iconA && (title || iconB) ? text(' ') : null,

@@ -53,20 +53,15 @@ export default ({
     ])
   } else {
     data = !data.trim().length && href ? '_' : data
-    const P = {
+    const el = h(href || name ? 'a' : 'span', {
+      href: name ? src : (href || null),
+      title: title,
+      download: src && name ? name : null,
       style: {
         whiteSpace: 'pre-wrap',
         wordBreak: mime ? 'break-all' : null
-      },
-      href: name ? src : (href || null)
-    }
-    if (title) {
-      P.title = title
-    }
-    if (src && name) {
-      P.download = name
-    }
-    const el = h(href || name ? 'a' : 'span', P, text(name ? title : data))
+      }
+    }, text(name ? title : data))
 
     return !type ? el : h('div', {
       class: [
