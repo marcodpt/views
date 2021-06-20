@@ -608,50 +608,48 @@ export default [
         {
           filter: action => {
             if (action == 'open') {
+              return null
+            } else if (action == 'active') {
+              return null
+            } else if (action == 'items') {
+              return null
+            } else if (action == 'close') {
               return state => {
-                alert('open')
+                alert('close')
                 return state
               }
-            } else if (action == 'active') {
-              return true
-            } else if (action == 'items') {
-              return [
-                {
-                  title: 'First filter',
-                  click: state => {
-                    alert('First')
-                    return state
-                  }
-                }, {
-                  title: 'Second filter',
-                  click: state => {
-                    alert('Second')
-                    return state
-                  }
-                }
-              ]
-            } else if (action == 'close') {
-              return null
             } else if (action == 'onfield') {
-              return null
+              return (state, ev) => {
+                alert('field: '+ev.target.value)
+                return state
+              }
             } else if (action == 'fields') {
-              return null
+              return ['id', 'created', 'name']
             } else if (action == 'field') {
-              return null
+              return ''
             } else if (action == 'onoperator') {
-              return null
+              return (state, ev) => {
+                alert('operator: '+ev.target.value)
+                return state
+              }
             } else if (action == 'operators') {
-              return null
+              return ['equal', 'not equal', 'contains']
             } else if (action == 'operator') {
-              return null
+              return 'equal'
             } else if (action == 'onvalue') {
-              return null
+              return (state, ev) => {
+                alert('value: '+ev.target.value)
+                return state
+              }
             } else if (action == 'values') {
-              return null
+              return ['x', 'y', 'z']
             } else if (action == 'value') {
-              return null
+              return ''
             } else if (action == 'run') {
-              return null
+              return state => {
+                alert('run')
+                return state
+              }
             }
           },
           tab: 'filter'
@@ -677,24 +675,48 @@ export default [
                     <div class="col-auto">
                       <select class="form-control">
                         <option
-                          value=""
-                          label=""
+                          value="id"
+                          label="id"
+                        ></option>
+                        <option
+                          value="created"
+                          label="created"
+                        ></option>
+                        <option
+                          value="name"
+                          label="name"
                         ></option>
                       </select>
                     </div>
                     <div class="col-auto">
                       <select class="form-control">
                         <option
-                          value=""
-                          label=""
+                          value="equal"
+                          label="equal"
+                        ></option>
+                        <option
+                          value="not equal"
+                          label="not equal"
+                        ></option>
+                        <option
+                          value="contains"
+                          label="contains"
                         ></option>
                       </select>
                     </div>
                     <div class="col-auto">
                       <select class="form-control">
                         <option
-                          value=""
-                          label=""
+                          value="x"
+                          label="x"
+                        ></option>
+                        <option
+                          value="y"
+                          label="y"
+                        ></option>
+                        <option
+                          value="z"
+                          label="z"
                         ></option>
                       </select>
                     </div>
@@ -710,6 +732,238 @@ export default [
           </table>
         `),
         "Filter Tab"
+      ], [
+        {
+          group: action => {
+            if (action == 'current') {
+              return ''
+            } else if (action == 'open') {
+              return state => {
+                alert('open')
+                return state
+              }
+            } else if (action == 'clear') {
+              return null
+            } else if (action == 'close') {
+              return null
+            } else if (action == 'fields') {
+              return null
+            } else if (action == 'change') {
+              return null
+            } else if (action == 'run') {
+              return null
+            }
+          }
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-warning"
+                    ><i class="fas fa-th"></i> Group</button>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        `),
+        "Group"
+      ], [
+        {
+          group: action => {
+            if (action == 'current') {
+              return ': name'
+            } else if (action == 'open') {
+              return null
+            } else if (action == 'clear') {
+              return state => {
+                alert('clear')
+                return state
+              }
+            } else if (action == 'close') {
+              return null
+            } else if (action == 'fields') {
+              return null
+            } else if (action == 'change') {
+              return null
+            } else if (action == 'run') {
+              return null
+            }
+          }
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-warning"
+                    ><i class="fas fa-times"></i> Ungroup</button>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        `),
+        "Group active"
+      ], [
+        {
+          group: action => {
+            if (action == 'current') {
+              return ': name'
+            } else if (action == 'open') {
+              return null
+            } else if (action == 'clear') {
+              return null
+            } else if (action == 'close') {
+              return state => {
+                alert('close')
+                return state
+              }
+            } else if (action == 'fields') {
+              return ['id', 'created', 'name']
+            } else if (action == 'change') {
+              return (state, ev) => {
+                alert('change: '+ev.target.value)
+                return state
+              }
+            } else if (action == 'run') {
+              return state => {
+                alert('run')
+                return state
+              }
+            }
+          },
+          tab: 'group'
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div
+                    class="row gx-1 justify-content-center"
+                  >
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary"
+                      ><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="col-auto">
+                      <select class="form-control">
+                        <option
+                          value="id"
+                          label="id"
+                        ></option>
+                        <option
+                          value="created"
+                          label="created"
+                        ></option>
+                        <option
+                          value="name"
+                          label="name"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-warning"
+                      ><i class="fas fa-th"></i> Group</button>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        `),
+        "Group tab"
+      ], [
+        {
+          download: action => {
+            if (action == 'run') {
+              return state => {
+                alert('download')
+                return state
+              }
+            } else if (action == 'pending') {
+              return false
+            }
+          }
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-secondary"
+                    ><i class="fas fa-file-csv"></i> Download</button>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        `),
+        "Download"
+      ], [
+        {
+          download: action => {
+            if (action == 'run') {
+              return state => {
+                alert('download')
+                return state
+              }
+            } else if (action == 'pending') {
+              return true
+            }
+          }
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-secondary disabled"
+                    ><i class="fas fa-spinner fa-spin"></i> Download</button>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        `),
+        "Download pending"
       ]
     ]
   ]

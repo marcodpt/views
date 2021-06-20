@@ -194,14 +194,14 @@ export default (language) => {
           !group || !group('current') ? null : link({
             icon: 'times',
             type: 'warning',
-            title: t('ungroup'),
-            click: group('clear')
+            title: t('group'),
+            click: group('open')
           }),
           !group || group('current') ? null : link({
             icon: 'th',
             type: 'warning',
-            title: t('group'),
-            click: group('open')
+            title: t('ungroup'),
+            click: group('clear')
           }),
           !download ? null : link({
             icon: 'file-csv',
