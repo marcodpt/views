@@ -964,6 +964,378 @@ export default [
           </table>
         `),
         "Download pending"
+      ], [
+        {
+          Fields: [
+            row => 
+              row == null ? {
+                title: 'Id',
+                name: 'id'
+              } : {
+                data: String(row.id)
+              },
+            row => 
+              row == null ? {
+                title: 'Name',
+                name: 'name'
+              } : {
+                data: String(row.name)
+              },
+            row => 
+              row == null ? {
+                title: 'Value',
+                name: 'value'
+              } : {
+                data: String(row.value)
+              }
+          ]
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <th class="align-middle text-center">
+                  Id
+                </th>
+                <th class="align-middle text-center">
+                  Name
+                </th>
+                <th class="align-middle text-center">
+                  Value
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <i class="fas fa-spinner fa-spin fa-5x"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        `),
+        "Loading"
+      ], [
+        {
+          Fields: [
+            row => 
+              row == null ? {
+                title: 'Id',
+                name: 'id'
+              } : {
+                data: String(row.id)
+              },
+            row => 
+              row == null ? {
+                title: 'Name',
+                name: 'name'
+              } : {
+                data: String(row.name)
+              },
+            row => 
+              row == null ? {
+                title: 'Value',
+                name: 'value'
+              } : {
+                data: String(row.value)
+              }
+          ],
+          Rows: [
+            {id: 1, name: 'Car', value: '30000'},
+            {id: 2, name: 'Bike', value: '500'},
+            {id: 3, name: 'Boat', value: '200000'}
+          ]
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                >Id</th>
+                <th
+                  class="align-middle text-center"
+                >Name</th>
+                <th
+                  class="align-middle text-center"
+                >Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >1</td>
+                <td
+                  class="align-middle text-center"
+                >Car</td>
+                <td
+                  class="align-middle text-center"
+                >30000</td>
+              </tr>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >2</td>
+                <td
+                  class="align-middle text-center"
+                >Bike</td>
+                <td
+                  class="align-middle text-center"
+                >500</td>
+              </tr>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                >Boat</td>
+                <td
+                  class="align-middle text-center"
+                >200000</td>
+              </tr>
+            </tbody>
+          </table>
+        `),
+        "Simple table"
+      ], [
+        {
+          Fields: [
+            row => 
+              row == null ? {
+                title: 'Id',
+                name: 'id'
+              } : {
+                data: String(row.id)
+              },
+            row => 
+              row == null ? {
+                title: 'Name',
+                name: 'name'
+              } : {
+                data: String(row.name)
+              },
+            row => 
+              row == null ? {
+                title: 'Value',
+                name: 'value'
+              } : {
+                data: String(row.value)
+              }
+          ],
+          Rows: [
+            {id: 1, name: 'Car', value: '30000'},
+            {id: 2, name: 'Bike', value: '500'},
+            {id: 3, name: 'Boat', value: '200000'}
+          ],
+          totals: {
+            id: 3,
+            value: 230500
+          }
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                >230500</td>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                >Id</th>
+                <th
+                  class="align-middle text-center"
+                >Name</th>
+                <th
+                  class="align-middle text-center"
+                >Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >1</td>
+                <td
+                  class="align-middle text-center"
+                >Car</td>
+                <td
+                  class="align-middle text-center"
+                >30000</td>
+              </tr>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >2</td>
+                <td
+                  class="align-middle text-center"
+                >Bike</td>
+                <td
+                  class="align-middle text-center"
+                >500</td>
+              </tr>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                >Boat</td>
+                <td
+                  class="align-middle text-center"
+                >200000</td>
+              </tr>
+            </tbody>
+          </table>
+        `),
+        "table with totals"
+      ], [
+        {
+          Fields: [
+            row => 
+              row == null ? {
+                title: 'Id',
+                name: 'id'
+              } : {
+                data: String(row.id)
+              },
+            row => 
+              row == null ? {
+                title: 'Name',
+                name: 'name'
+              } : {
+                data: String(row.name)
+              },
+            row => 
+              row == null ? {
+                title: 'Value',
+                name: 'value'
+              } : {
+                data: String(row.value)
+              }
+          ],
+          Links: [
+            row => 
+              row == null ? {
+                icon: 'trash'
+              } : {
+                type: 'danger',
+                icon: 'trash',
+                click: state => {
+                  alert('delete/'+row.id)
+                  return state
+                }
+              },
+            row => 
+              row == null ? {
+                icon: 'trash'
+              } : {
+                type: 'danger',
+                icon: 'trash',
+                click: state => {
+                  alert('delete/'+row.id)
+                  return state
+                }
+              }
+          ],
+          totals: {
+            id: 3,
+            value: 230500
+          },
+          Rows: [
+            {id: 1, name: 'Car', value: '30000'},
+            {id: 2, name: 'Bike', value: '500'},
+            {id: 3, name: 'Boat', value: '200000'}
+          ]
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                >230500</td>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                >Id</th>
+                <th
+                  class="align-middle text-center"
+                >Name</th>
+                <th
+                  class="align-middle text-center"
+                >Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >1</td>
+                <td
+                  class="align-middle text-center"
+                >Car</td>
+                <td
+                  class="align-middle text-center"
+                >30000</td>
+              </tr>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >2</td>
+                <td
+                  class="align-middle text-center"
+                >Bike</td>
+                <td
+                  class="align-middle text-center"
+                >500</td>
+              </tr>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                >Boat</td>
+                <td
+                  class="align-middle text-center"
+                >200000</td>
+              </tr>
+            </tbody>
+          </table>
+        `),
+        "table with links"
       ]
     ]
   ]
