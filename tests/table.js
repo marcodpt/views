@@ -105,7 +105,7 @@ export default [
                     <div class="col-auto">
                       <button
                         class="btn btn-secondary"
-                      ><i class="fas fa-arrow-left"></i>Back</button>
+                      ><i class="fas fa-arrow-left"></i> Back</button>
                     </div>
                   </div>
                 </th>
@@ -1157,8 +1157,6 @@ export default [
                   class="align-middle text-center"
                 >230500</td>
               </tr>
-            </thead>
-            <thead>
               <tr>
                 <th
                   class="align-middle text-center"
@@ -1237,25 +1235,21 @@ export default [
           Links: [
             row => 
               row == null ? {
-                icon: 'trash'
+                icon: 'trash',
+                title: 'Delete'
               } : {
                 type: 'danger',
                 icon: 'trash',
-                click: state => {
-                  alert('delete/'+row.id)
-                  return state
-                }
+                href: 'delete/'+row.id,
+                title: 'Delete'
               },
             row => 
               row == null ? {
-                icon: 'trash'
+                title: 'Edit'
               } : {
-                type: 'danger',
-                icon: 'trash',
-                click: state => {
-                  alert('delete/'+row.id)
-                  return state
-                }
+                type: 'warning',
+                title: 'Edit',
+                href: 'put/'+row.id
               }
           ],
           totals: {
@@ -1276,6 +1270,12 @@ export default [
               <tr>
                 <td
                   class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
                 >3</td>
                 <td
                   class="align-middle text-center"
@@ -1284,9 +1284,13 @@ export default [
                   class="align-middle text-center"
                 >230500</td>
               </tr>
-            </thead>
-            <thead>
               <tr>
+                <th
+                  class="align-middle text-center"
+                ><i class="fas fa-trash"></i></th>
+                <th
+                  class="align-middle text-center"
+                >Edit</th>
                 <th
                   class="align-middle text-center"
                 >Id</th>
@@ -1300,6 +1304,18 @@ export default [
             </thead>
             <tbody>
               <tr>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/1"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/1"
+                  >Edit</a>
+                </td>
                 <td
                   class="align-middle text-center"
                 >1</td>
@@ -1311,6 +1327,18 @@ export default [
                 >30000</td>
               </tr>
               <tr>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/2"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/2"
+                  >Edit</a>
+                </td>
                 <td
                   class="align-middle text-center"
                 >2</td>
@@ -1322,6 +1350,18 @@ export default [
                 >500</td>
               </tr>
               <tr>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/3"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/3"
+                  >Edit</a>
+                </td>
                 <td
                   class="align-middle text-center"
                 >3</td>
@@ -1336,6 +1376,1372 @@ export default [
           </table>
         `),
         "table with links"
+      ], [
+        {
+          Fields: [
+            row => 
+              row == null ? {
+                title: 'Id',
+                name: 'id'
+              } : {
+                data: String(row.id)
+              },
+            row => 
+              row == null ? {
+                title: 'Name',
+                name: 'name'
+              } : {
+                data: String(row.name)
+              },
+            row => 
+              row == null ? {
+                title: 'Value',
+                name: 'value'
+              } : {
+                data: String(row.value)
+              }
+          ],
+          Links: [
+            row => 
+              row == null ? {
+                icon: 'trash',
+                title: 'Delete'
+              } : {
+                type: 'danger',
+                icon: 'trash',
+                href: 'delete/'+row.id,
+                title: 'Delete'
+              },
+            row => 
+              row == null ? {
+                title: 'Edit'
+              } : {
+                type: 'warning',
+                title: 'Edit',
+                href: 'put/'+row.id
+              }
+          ],
+          totals: {
+            id: 3,
+            value: 230500
+          },
+          Rows: [
+            {id: 1, name: 'Car', value: '30000'},
+            {id: 2, name: 'Bike', value: '500'},
+            {id: 3, name: 'Boat', value: '200000'}
+          ],
+          check: (row, exec) => {
+            if (exec) {
+              return state => {
+                alert('check: '+(row != null ? row.id : 'all'))
+                return state
+              }
+            } else {
+              return row.id % 2 == 0
+            }
+          },
+          sort: (name, exec) => {
+            if (exec) {
+              return state => {
+                alert('sort: '+name)
+                return state
+              }
+            } else {
+              return name == 'name' ? 'sort-up' : 'sort'
+            }
+          }
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                >230500</td>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                >
+                  <button
+                    class="btn btn-success btn-sm"
+                  ><i class="fas fa-check"></i></button>
+                </th>
+                <th
+                  class="align-middle text-center"
+                ><i class="fas fa-trash"></i></th>
+                <th
+                  class="align-middle text-center"
+                >Edit</th>
+                <th
+                  class="align-middle text-center"
+                ><span>Id <i class="fas fa-sort"></i></span></th>
+                <th
+                  class="align-middle text-center"
+                ><span>Name <i class="fas fa-sort-up"></i></span></th>
+                <th
+                  class="align-middle text-center"
+                ><span>Value <i class="fas fa-sort"></i></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="align-middle text-center">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                  />
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/1"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/1"
+                  >Edit</a>
+                </td>
+                <td
+                  class="align-middle text-center"
+                >1</td>
+                <td
+                  class="align-middle text-center"
+                >Car</td>
+                <td
+                  class="align-middle text-center"
+                >30000</td>
+              </tr>
+              <tr>
+                <td class="align-middle text-center">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    checked
+                  />
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/2"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/2"
+                  >Edit</a>
+                </td>
+                <td
+                  class="align-middle text-center"
+                >2</td>
+                <td
+                  class="align-middle text-center"
+                >Bike</td>
+                <td
+                  class="align-middle text-center"
+                >500</td>
+              </tr>
+              <tr>
+                <td class="align-middle text-center">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                  />
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/3"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/3"
+                  >Edit</a>
+                </td>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                >Boat</td>
+                <td
+                  class="align-middle text-center"
+                >200000</td>
+              </tr>
+            </tbody>
+          </table>
+        `),
+        "table with links, checkbox and sort"
+      ], [
+        {
+          Fields: [
+            row => 
+              row == null ? {
+                title: 'Id',
+                name: 'id'
+              } : {
+                data: String(row.id)
+              },
+            row => 
+              row == null ? {
+                title: 'Name',
+                name: 'name'
+              } : {
+                data: String(row.name)
+              },
+            row => 
+              row == null ? {
+                title: 'Value',
+                name: 'value'
+              } : {
+                data: String(row.value)
+              }
+          ],
+          Links: [
+            row => 
+              row == null ? {
+                icon: 'trash',
+                title: 'Delete'
+              } : {
+                type: 'danger',
+                icon: 'trash',
+                href: 'delete/'+row.id,
+                title: 'Delete'
+              },
+            row => 
+              row == null ? {
+                title: 'Edit'
+              } : {
+                type: 'warning',
+                title: 'Edit',
+                href: 'put/'+row.id
+              }
+          ],
+          Actions: [
+            {
+              type: "success",
+              href: "#insert",
+              icon: "pencil-alt",
+              title: "Insert"
+            }, {
+              type: "warning",
+              href: "#edit",
+              icon: "edit",
+              title: "Update"
+            }, {
+              type: "danger",
+              href: "#remove",
+              icon: "trash",
+              title: "Remove"
+            }
+          ],
+          totals: {
+            id: 3,
+            value: 230500
+          },
+          Rows: [
+            {id: 1, name: 'Car', value: '30000'},
+            {id: 2, name: 'Bike', value: '500'},
+            {id: 3, name: 'Boat', value: '200000'}
+          ],
+          check: (row, exec) => {
+            if (exec) {
+              return state => {
+                alert('check: '+(row != null ? row.id : 'all'))
+                return state
+              }
+            } else {
+              return row.id % 2 == 0
+            }
+          },
+          sort: (name, exec) => {
+            if (exec) {
+              return state => {
+                alert('sort: '+name)
+                return state
+              }
+            } else {
+              return name == 'name' ? 'sort-up' : 'sort'
+            }
+          },
+          download: action => {
+            if (action == 'run') {
+              return state => {
+                alert('download')
+                return state
+              }
+            } else if (action == 'pending') {
+              return false
+            }
+          },
+          group: action => {
+            if (action == 'current') {
+              return ''
+            } else if (action == 'open') {
+              return state => {
+                alert('open')
+                return state
+              }
+            } else if (action == 'clear') {
+              return null
+            } else if (action == 'close') {
+              return null
+            } else if (action == 'fields') {
+              return null
+            } else if (action == 'change') {
+              return null
+            } else if (action == 'run') {
+              return null
+            }
+          },
+          filter: action => {
+            if (action == 'open') {
+              return state => {
+                alert('open')
+                return state
+              }
+            } else if (action == 'active') {
+              return true
+            } else if (action == 'items') {
+              return [
+                {
+                  title: 'First filter',
+                  click: state => {
+                    alert('First')
+                    return state
+                  }
+                }, {
+                  title: 'Second filter',
+                  click: state => {
+                    alert('Second')
+                    return state
+                  }
+                }
+              ]
+            } else if (action == 'close') {
+              return null
+            } else if (action == 'onfield') {
+              return null
+            } else if (action == 'fields') {
+              return null
+            } else if (action == 'field') {
+              return null
+            } else if (action == 'onoperator') {
+              return null
+            } else if (action == 'operators') {
+              return null
+            } else if (action == 'operator') {
+              return null
+            } else if (action == 'onvalue') {
+              return null
+            } else if (action == 'values') {
+              return null
+            } else if (action == 'value') {
+              return null
+            } else if (action == 'run') {
+              return null
+            }
+          },
+          search: action => {
+            if (action == 'clear') {
+              return state => {
+                alert('clear')
+                return state
+              }
+            } else if (action == 'change') {
+              return state => {
+                alert('change')
+                return state
+              }
+            } else if (action == 'value') {
+              return state => {
+                alert('value')
+                return state
+              }
+            }
+          },
+          page: action => {
+            if (action == 'rr') {
+              return state => {
+                alert('r')
+                return state
+              }
+            } else if (action == 'r') {
+              return state => {
+                alert('rr')
+                return state
+              }
+            } else if (action == 'f') {
+              return state => {
+                alert('f')
+                return state
+              }
+            } else if (action == 'ff') {
+              return state => {
+                alert('ff')
+                return state
+              }
+            } else if (action == 'options') {
+              const p = 4
+              const R = []
+              for (i = 1; i <= p; i++) {
+                R.push({value: i, label: `Page ${i} of ${p}`})
+              }
+              return R
+            } else if (action == 'change') {
+              return (state, ev) => {
+                alert(`page: ${ev.target.value}`)
+                return state
+              }
+            } else if (action == 'page') {
+              return 3
+            } else if (action == 'limiters') {
+              const L = [5, 10, 25, 50, 100]
+              const R = []
+              for (i = 0; i < L.length; i++) {
+                R.push({value: L[i], label: `${L[i]} items per page`})
+              }
+              return R
+            } else if (action == 'limiter') {
+              return (state, ev) => {
+                alert(`limit: ${ev.target.value}`)
+                return state
+              }
+            } else if (action == 'limit') {
+              return 10
+            }
+          },
+          back: back,
+          title: "sample table",
+          description: [
+            "Hello world!",
+            "This is my table, and this table have a description support! :)",
+            "This is a long text test for see how it fits in the layout!",
+            "Hope you enjoy!"
+          ].join('\n')
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >sample table</th>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div
+                    class="m-auto text-left"
+                    style="max-width: 300px;"
+                  >
+                    <div
+                      class="alert alert-info"
+                      role="alert"
+                    >
+                      <span style="white-space: pre-wrap;">${[
+                        "Hello world!",
+                        "This is my table, and this table have a description support! :)",
+                        "This is a long text test for see how it fits in the layout!",
+                        "Hope you enjoy!"
+                      ].join('\n')}</span>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div
+                    class="row gx-1 justify-content-center"
+                  >
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary"
+                      ><i class="fas fa-arrow-left"></i> Back</button>
+                    </div>
+                    <div class="col-auto">
+                      <a
+                        class="btn btn-success"
+                        href="#insert"
+                      ><i class="fas fa-pencil-alt"></i> Insert</a>
+                    </div>
+                    <div class="col-auto">
+                      <a
+                        class="btn btn-warning"
+                        href="#edit"
+                      ><i class="fas fa-edit"></i> Update</a>
+                    </div>
+                    <div class="col-auto">
+                      <a
+                        class="btn btn-danger"
+                        href="#remove"
+                      ><i class="fas fa-trash"></i> Remove</a>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-secondary"
+                    ><i class="fas fa-times"></i></button>
+                    <input
+                      class="form-control"
+                      placeholder="Search"
+                    />
+                    <button
+                      class="btn btn-info"
+                    ><i class="fas fa-filter"></i> Filter</button>
+                    <a
+                      class="btn btn-info dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      style="cursor: pointer;"
+                    ></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a
+                          class="dropdown-item"
+                        ><i class="fas fa-times"></i> First filter</a>
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                        ><i class="fas fa-times"></i> Second filter</a>
+                      </li>
+                    </ul>
+                    <button
+                      class="btn btn-warning"
+                    ><i class="fas fa-th"></i> Group</button>
+                    <button
+                      class="btn btn-secondary"
+                    ><i class="fas fa-file-csv"></i> Download</button>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div
+                    class="row gx-1 justify-content-center"
+                  >
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary disabled"
+                      ><i class="fas fa-fast-backward"></i></button>
+                    </div>
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary disabled"
+                      ><i class="fas fa-step-backward"></i></button>
+                    </div>
+                    <div class="col-auto">
+                      <select class="form-control">
+                        <option
+                          value="1"
+                          label="Page 1 of 4"
+                        ></option>
+                        <option
+                          value="2"
+                          label="Page 2 of 4"
+                        ></option>
+                        <option
+                          value="3"
+                          label="Page 3 of 4"
+                        ></option>
+                        <option
+                          value="4"
+                          label="Page 4 of 4"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="col-auto">
+                      <select class="form-control">
+                        <option
+                          value="5"
+                          label="5 items per page"
+                        ></option>
+                        <option
+                          value="10"
+                          label="10 items per page"
+                        ></option>
+                        <option
+                          value="25"
+                          label="25 items per page"
+                        ></option>
+                        <option
+                          value="50"
+                          label="50 items per page"
+                        ></option>
+                        <option
+                          value="100"
+                          label="100 items per page"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary"
+                      ><i class="fas fa-step-forward"></i></button>
+                    </div>
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary"
+                      ><i class="fas fa-fast-forward"></i></button>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                >230500</td>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                >
+                  <button
+                    class="btn btn-success btn-sm"
+                  ><i class="fas fa-check"></i></button>
+                </th>
+                <th
+                  class="align-middle text-center"
+                ><i class="fas fa-trash"></i></th>
+                <th
+                  class="align-middle text-center"
+                >Edit</th>
+                <th
+                  class="align-middle text-center"
+                ><span>Id <i class="fas fa-sort"></i></span></th>
+                <th
+                  class="align-middle text-center"
+                ><span>Name <i class="fas fa-sort-up"></i></span></th>
+                <th
+                  class="align-middle text-center"
+                ><span>Value <i class="fas fa-sort"></i></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="align-middle text-center">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                  />
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/1"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/1"
+                  >Edit</a>
+                </td>
+                <td
+                  class="align-middle text-center"
+                >1</td>
+                <td
+                  class="align-middle text-center"
+                >Car</td>
+                <td
+                  class="align-middle text-center"
+                >30000</td>
+              </tr>
+              <tr>
+                <td class="align-middle text-center">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    checked
+                  />
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/2"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/2"
+                  >Edit</a>
+                </td>
+                <td
+                  class="align-middle text-center"
+                >2</td>
+                <td
+                  class="align-middle text-center"
+                >Bike</td>
+                <td
+                  class="align-middle text-center"
+                >500</td>
+              </tr>
+              <tr>
+                <td class="align-middle text-center">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                  />
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/3"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/3"
+                  >Edit</a>
+                </td>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                >Boat</td>
+                <td
+                  class="align-middle text-center"
+                >200000</td>
+              </tr>
+            </tbody>
+          </table>
+        `),
+        "full table example"
+      ]
+    ]
+  ], [
+    "table pt"
+    (params) => table('pt')(params),
+    [
+      [
+        {
+          Fields: [
+            row => 
+              row == null ? {
+                title: 'Id',
+                name: 'id'
+              } : {
+                data: String(row.id)
+              },
+            row => 
+              row == null ? {
+                title: 'Nome',
+                name: 'name'
+              } : {
+                data: String(row.name)
+              },
+            row => 
+              row == null ? {
+                title: 'Valor',
+                name: 'value'
+              } : {
+                data: String(row.value)
+              }
+          ],
+          Links: [
+            row => 
+              row == null ? {
+                icon: 'trash',
+                title: 'Excluir'
+              } : {
+                type: 'danger',
+                icon: 'trash',
+                href: 'delete/'+row.id,
+                title: 'Excluir'
+              },
+            row => 
+              row == null ? {
+                title: 'Atualizar'
+              } : {
+                type: 'warning',
+                title: 'Atualizar',
+                href: 'put/'+row.id
+              }
+          ],
+          Actions: [
+            {
+              type: "success",
+              href: "#insert",
+              icon: "pencil-alt",
+              title: "Inserir"
+            }, {
+              type: "warning",
+              href: "#edit",
+              icon: "edit",
+              title: "Atualizar"
+            }, {
+              type: "danger",
+              href: "#remove",
+              icon: "trash",
+              title: "Excluir"
+            }
+          ],
+          totals: {
+            id: 3,
+            value: 230500
+          },
+          Rows: [
+            {id: 1, name: 'Carro', value: '30000'},
+            {id: 2, name: 'Bicicleta', value: '500'},
+            {id: 3, name: 'Barco', value: '200000'}
+          ],
+          check: (row, exec) => {
+            if (exec) {
+              return state => {
+                alert('check: '+(row != null ? row.id : 'all'))
+                return state
+              }
+            } else {
+              return row.id % 2 == 0
+            }
+          },
+          sort: (name, exec) => {
+            if (exec) {
+              return state => {
+                alert('sort: '+name)
+                return state
+              }
+            } else {
+              return name == 'name' ? 'sort-up' : 'sort'
+            }
+          },
+          download: action => {
+            if (action == 'run') {
+              return state => {
+                alert('download')
+                return state
+              }
+            } else if (action == 'pending') {
+              return false
+            }
+          },
+          group: action => {
+            if (action == 'current') {
+              return ''
+            } else if (action == 'open') {
+              return state => {
+                alert('open')
+                return state
+              }
+            } else if (action == 'clear') {
+              return null
+            } else if (action == 'close') {
+              return null
+            } else if (action == 'fields') {
+              return null
+            } else if (action == 'change') {
+              return null
+            } else if (action == 'run') {
+              return null
+            }
+          },
+          filter: action => {
+            if (action == 'open') {
+              return state => {
+                alert('open')
+                return state
+              }
+            } else if (action == 'active') {
+              return true
+            } else if (action == 'items') {
+              return [
+                {
+                  title: 'Primeiro filtro',
+                  click: state => {
+                    alert('First')
+                    return state
+                  }
+                }, {
+                  title: 'Segundo filtro',
+                  click: state => {
+                    alert('Second')
+                    return state
+                  }
+                }
+              ]
+            } else if (action == 'close') {
+              return null
+            } else if (action == 'onfield') {
+              return null
+            } else if (action == 'fields') {
+              return null
+            } else if (action == 'field') {
+              return null
+            } else if (action == 'onoperator') {
+              return null
+            } else if (action == 'operators') {
+              return null
+            } else if (action == 'operator') {
+              return null
+            } else if (action == 'onvalue') {
+              return null
+            } else if (action == 'values') {
+              return null
+            } else if (action == 'value') {
+              return null
+            } else if (action == 'run') {
+              return null
+            }
+          },
+          search: action => {
+            if (action == 'clear') {
+              return state => {
+                alert('clear')
+                return state
+              }
+            } else if (action == 'change') {
+              return state => {
+                alert('change')
+                return state
+              }
+            } else if (action == 'value') {
+              return state => {
+                alert('value')
+                return state
+              }
+            }
+          },
+          page: action => {
+            if (action == 'rr') {
+              return state => {
+                alert('r')
+                return state
+              }
+            } else if (action == 'r') {
+              return state => {
+                alert('rr')
+                return state
+              }
+            } else if (action == 'f') {
+              return state => {
+                alert('f')
+                return state
+              }
+            } else if (action == 'ff') {
+              return state => {
+                alert('ff')
+                return state
+              }
+            } else if (action == 'options') {
+              const p = 4
+              const R = []
+              for (i = 1; i <= p; i++) {
+                R.push({value: i, label: `Página ${i} de ${p}`})
+              }
+              return R
+            } else if (action == 'change') {
+              return (state, ev) => {
+                alert(`page: ${ev.target.value}`)
+                return state
+              }
+            } else if (action == 'page') {
+              return 3
+            } else if (action == 'limiters') {
+              const L = [5, 10, 25, 50, 100]
+              const R = []
+              for (i = 0; i < L.length; i++) {
+                R.push({value: L[i], label: `${L[i]} itens por página`})
+              }
+              return R
+            } else if (action == 'limiter') {
+              return (state, ev) => {
+                alert(`limit: ${ev.target.value}`)
+                return state
+              }
+            } else if (action == 'limit') {
+              return 10
+            }
+          },
+          back: back,
+          title: "Tabela em Português",
+          description: [
+            "Olá mundo!",
+            "Esta é minha tabela, e esta tabela tem suporte para descrição! :)",
+            "Este é um texto longo de teste para ver como fica visualmente!",
+            "Espero que goste!"
+          ].join('\n')
+        },
+        html(`
+          <table
+            class="table table-striped table-bordered table-hover table-center"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >Tabela em Português</th>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div
+                    class="m-auto text-left"
+                    style="max-width: 300px;"
+                  >
+                    <div
+                      class="alert alert-info"
+                      role="alert"
+                    >
+                      <span style="white-space: pre-wrap;">${[
+                        "Olá mundo!",
+                        "Esta é minha tabela, e esta tabela tem suporte para descrição! :)",
+                        "Este é um texto longo de teste para ver como fica visualmente!",
+                        "Espero que goste!"
+                      ].join('\n')}</span>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div
+                    class="row gx-1 justify-content-center"
+                  >
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary"
+                      ><i class="fas fa-arrow-left"></i> Voltar</button>
+                    </div>
+                    <div class="col-auto">
+                      <a
+                        class="btn btn-success"
+                        href="#insert"
+                      ><i class="fas fa-pencil-alt"></i> Inserir</a>
+                    </div>
+                    <div class="col-auto">
+                      <a
+                        class="btn btn-warning"
+                        href="#edit"
+                      ><i class="fas fa-edit"></i> Atualizar</a>
+                    </div>
+                    <div class="col-auto">
+                      <a
+                        class="btn btn-danger"
+                        href="#remove"
+                      ><i class="fas fa-trash"></i> Excluir</a>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-secondary"
+                    ><i class="fas fa-times"></i></button>
+                    <input
+                      class="form-control"
+                      placeholder="Buscar"
+                    />
+                    <button
+                      class="btn btn-info"
+                    ><i class="fas fa-filter"></i> Filter</button>
+                    <a
+                      class="btn btn-info dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      style="cursor: pointer;"
+                    ></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a
+                          class="dropdown-item"
+                        ><i class="fas fa-times"></i> Primeiro filtro</a>
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                        ><i class="fas fa-times"></i> Segundo filtro</a>
+                      </li>
+                    </ul>
+                    <button
+                      class="btn btn-warning"
+                    ><i class="fas fa-th"></i> Agrupar</button>
+                    <button
+                      class="btn btn-secondary"
+                    ><i class="fas fa-file-csv"></i> Exportar</button>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div
+                    class="row gx-1 justify-content-center"
+                  >
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary disabled"
+                      ><i class="fas fa-fast-backward"></i></button>
+                    </div>
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary disabled"
+                      ><i class="fas fa-step-backward"></i></button>
+                    </div>
+                    <div class="col-auto">
+                      <select class="form-control">
+                        <option
+                          value="1"
+                          label="Página 1 de 4"
+                        ></option>
+                        <option
+                          value="2"
+                          label="Página 2 de 4"
+                        ></option>
+                        <option
+                          value="3"
+                          label="Página 3 de 4"
+                        ></option>
+                        <option
+                          value="4"
+                          label="Página 4 de 4"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="col-auto">
+                      <select class="form-control">
+                        <option
+                          value="5"
+                          label="5 itens por página"
+                        ></option>
+                        <option
+                          value="10"
+                          label="10 itens por página"
+                        ></option>
+                        <option
+                          value="25"
+                          label="25 itens por página"
+                        ></option>
+                        <option
+                          value="50"
+                          label="50 itens por página"
+                        ></option>
+                        <option
+                          value="100"
+                          label="100 itens por página"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary"
+                      ><i class="fas fa-step-forward"></i></button>
+                    </div>
+                    <div class="col-auto">
+                      <button
+                        class="btn btn-secondary"
+                      ><i class="fas fa-fast-forward"></i></button>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                ></td>
+                <td
+                  class="align-middle text-center"
+                >230500</td>
+              </tr>
+              <tr>
+                <th
+                  class="align-middle text-center"
+                >
+                  <button
+                    class="btn btn-success btn-sm"
+                  ><i class="fas fa-check"></i></button>
+                </th>
+                <th
+                  class="align-middle text-center"
+                ><i class="fas fa-trash"></i></th>
+                <th
+                  class="align-middle text-center"
+                >Edit</th>
+                <th
+                  class="align-middle text-center"
+                ><span>Id <i class="fas fa-sort"></i></span></th>
+                <th
+                  class="align-middle text-center"
+                ><span>Nome <i class="fas fa-sort-up"></i></span></th>
+                <th
+                  class="align-middle text-center"
+                ><span>Valor <i class="fas fa-sort"></i></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="align-middle text-center">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                  />
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/1"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/1"
+                  >Atualizar</a>
+                </td>
+                <td
+                  class="align-middle text-center"
+                >1</td>
+                <td
+                  class="align-middle text-center"
+                >Carro</td>
+                <td
+                  class="align-middle text-center"
+                >30000</td>
+              </tr>
+              <tr>
+                <td class="align-middle text-center">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    checked
+                  />
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/2"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/2"
+                  >Atualizar</a>
+                </td>
+                <td
+                  class="align-middle text-center"
+                >2</td>
+                <td
+                  class="align-middle text-center"
+                >Bicicleta</td>
+                <td
+                  class="align-middle text-center"
+                >500</td>
+              </tr>
+              <tr>
+                <td class="align-middle text-center">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                  />
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-danger"
+                    href="delete/3"
+                  ><i class="fas fa-trash"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <a
+                    class="btn btn-warning"
+                    href="put/3"
+                  >Atualizar</a>
+                </td>
+                <td
+                  class="align-middle text-center"
+                >3</td>
+                <td
+                  class="align-middle text-center"
+                >Barco</td>
+                <td
+                  class="align-middle text-center"
+                >200000</td>
+              </tr>
+            </tbody>
+          </table>
+        `),
+        "full table example"
       ]
     ]
   ]
