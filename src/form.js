@@ -1,12 +1,11 @@
-import {h, text} from '../lib.js'
+import {h, text, translate} from '../lib.js'
 import {spinner} from './icon.js'
 import data from './data.js'
 import link from './link.js'
 import field from './field.js'
-import translate from '../lang/index.js'
 
 export default (language) => {
-  const t = translate('form', language)
+  const t = translate(language)
 
   return ({
     title,

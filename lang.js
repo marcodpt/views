@@ -1,5 +1,7 @@
 export default {
   en: {
+    close: 'Close',
+    submit: 'Submit',
     back: 'Back',
     search: 'Search',
     filter: 'Filter',
@@ -8,6 +10,8 @@ export default {
     download: 'Download'
   },
   pt: {
+    close: 'Fechar',
+    submit: 'Confirmar',
     back: 'Voltar',
     search: 'Buscar',
     filter: 'Filtrar',

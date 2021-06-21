@@ -1,4 +1,5 @@
 import {h as hp, text as textp} from 'https://unpkg.com/hyperapp'
+import lang from './lang.js'
 
 const html = str => str.replace(/>[\s\r\n]*</g, "><").trim()
 const text = textp
@@ -9,9 +10,12 @@ const h = (tag, attrs, children) =>
     }
     return A
   }, {}), children)
+const translate = language => key =>
+  (lang[language] || lang.en || {})[key] || key
 
 export {
   html,
   text,
-  h
+  h,
+  translate
 }
