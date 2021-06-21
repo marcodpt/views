@@ -420,15 +420,12 @@ export default [
                 return state
               }
             } else if (action == 'change') {
-              return state => {
-                alert('change')
+              return (state, ev) => {
+                alert('change: '+ev.target.value)
                 return state
               }
             } else if (action == 'value') {
-              return state => {
-                alert('value')
-                return state
-              }
+              return ''
             }
           }
         },
@@ -1796,15 +1793,12 @@ export default [
                 return state
               }
             } else if (action == 'change') {
-              return state => {
-                alert('change')
+              return (state, ev) => {
+                alert('change: '+ev.target.value)
                 return state
               }
             } else if (action == 'value') {
-              return state => {
-                alert('value')
-                return state
-              }
+              return ''
             }
           },
           page: action => {
@@ -2386,15 +2380,12 @@ export default [
                 return state
               }
             } else if (action == 'change') {
-              return state => {
-                alert('change')
+              return (state, ev) => {
+                alert('change: '+ev.target.value)
                 return state
               }
             } else if (action == 'value') {
-              return state => {
-                alert('value')
-                return state
-              }
+              return ''
             }
           },
           page: action => {
