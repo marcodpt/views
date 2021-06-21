@@ -2,6 +2,7 @@ import {h, text} from '../lib.js'
 import {spinner} from './icon.js'
 import data from './data.js'
 import link from './link.js'
+import field from './field.js'
 import translate from '../lang/index.js'
 
 const sm = l =>
@@ -9,7 +10,7 @@ const sm = l =>
     ...l,
     size: 'sm',
     title: l.icon ? null : l.title,
-    type: click === undefined ? null : l.type
+    type: l.href === undefined && l.click === undefined ? null : l.type
   })
 
 const cell = ({
@@ -39,26 +40,25 @@ const base = ({Heads, Rows, Cols}) =>
       content,
       type
     }) => 
-      h('tr', {}, [
-        ([
+      ([
           'inline',
           'raw'
-        ]).indexOf(type) != -1 ? cell({
+      ]).indexOf(type) != -1 ? h('tr', {}, 
+        cell({
           head: true,
           full: true
         }, [
           type == 'inline' ? h('div', {
             class: 'row gx-1 justify-content-center'
-          }, content.map(data => {
-            console.log(content)
-            console.log(data)
+          }, content.filter(d => d).map(data => {
             return h('div', {
               class: 'col-auto'
             }, data)
           }
           )) : content
-        ]) : !Cols ? null : Cols.map(c => c && c(content, type))
-      ])
+        ])
+      ) : !Cols || !Cols.filter(c => c).length ? null :
+        h('tr', {}, Cols.map(c => c && c(content, type)))
     )),
     !Cols || !Cols.filter(c => c).length ? null : h('tbody', {}, 
       !Rows ? h('tr', {}, [
@@ -87,6 +87,7 @@ export default (language) => {
     search,
     download,
     tab,
+    totals,
     Rows
   }) => base({
     Heads: [
@@ -111,12 +112,12 @@ export default (language) => {
       },
       !back && !Actions ? null : {
         type: 'inline',
-        content: [!back ? null : link({
+        content: [!back ? null : {
           type: 'secondary',
           icon: 'arrow-left',
           title: t('back'),
           click: back
-        })].concat([] || Actions).map(action => link(action))
+        }].concat(Actions || []).filter(a => a).map(a => link(a))
       },
       !page ? null : {
         type: 'inline',
@@ -191,14 +192,14 @@ export default (language) => {
               })
             ])
           )),
-          !group || !group('current') ? null : link({
-            icon: 'times',
+          !group || group('current') ? null : link({
+            icon: 'th',
             type: 'warning',
             title: t('group'),
             click: group('open')
           }),
-          !group || group('current') ? null : link({
-            icon: 'th',
+          !group || !group('current') ? null : link({
+            icon: 'times',
             type: 'warning',
             title: t('ungroup'),
             click: group('clear')
@@ -262,23 +263,31 @@ export default (language) => {
             click: group('run')
           })
         ]
+      },
+      !totals ? null : {
+        content: totals,
+        type: 'totals'
+      },
+      {
+        content: null,
+        type: null
       }
     ],
     Cols: [
       !check ? null : (row, type) => 
-      type == 'totals' ? cell({}) :
-      row == null ? cell({
-        head: true
-      }, link({
-        type: 'success',
-        icon: 'check',
-        size: 'sm',
-        click: check(null, true)
-      })) : cell({}, field({
-        type: 'checkbox',
-        checked: check(row.id),
-        click: check(row.id, true)
-      }))
+        type == 'totals' ? cell({}) :
+        row == null ? cell({
+          head: true
+        }, link({
+          type: 'success',
+          icon: 'check',
+          size: 'sm',
+          click: check(null, true)
+        })) : cell({}, field({
+          type: 'checkbox',
+          checked: check(row),
+          click: check(row, true)
+        }))
     ].concat((Links || []).map(l => (row, type) => 
       type == 'totals' ? cell({}) :
       row == null ? cell({
@@ -296,7 +305,7 @@ export default (language) => {
         }))
       } else {
         return cell({
-          left: X.data.indexOf('\n') != -1
+          left: X.data != null && String(X.data).indexOf('\n') != -1
         }, data(X))
       }
     })),

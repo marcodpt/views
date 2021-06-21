@@ -193,7 +193,7 @@ export default [
             } else if (action == 'options') {
               const p = 4
               const R = []
-              for (i = 1; i <= p; i++) {
+              for (var i = 1; i <= p; i++) {
                 R.push({value: i, label: `Page ${i} of ${p}`})
               }
               return R
@@ -299,7 +299,7 @@ export default [
             } else if (action == 'options') {
               const p = 4
               const R = []
-              for (i = 1; i <= p; i++) {
+              for (var i = 1; i <= p; i++) {
                 R.push({value: i, label: `Page ${i} of ${p}`})
               }
               return R
@@ -313,7 +313,7 @@ export default [
             } else if (action == 'limiters') {
               const L = [5, 10, 25, 50, 100]
               const R = []
-              for (i = 0; i < L.length; i++) {
+              for (var i = 0; i < L.length; i++) {
                 R.push({value: L[i], label: `${L[i]} items per page`})
               }
               return R
@@ -342,12 +342,12 @@ export default [
                   >
                     <div class="col-auto">
                       <button
-                        class="btn btn-secondary disabled"
+                        class="btn btn-secondary"
                       ><i class="fas fa-fast-backward"></i></button>
                     </div>
                     <div class="col-auto">
                       <button
-                        class="btn btn-secondary disabled"
+                        class="btn btn-secondary"
                       ><i class="fas fa-step-backward"></i></button>
                     </div>
                     <div class="col-auto">
@@ -448,6 +448,7 @@ export default [
                     ><i class="fas fa-times"></i></button>
                     <input
                       class="form-control"
+                      type="text"
                       placeholder="Search"
                     />
                   </div>
@@ -580,21 +581,22 @@ export default [
                     <button
                       class="btn btn-info"
                     ><i class="fas fa-filter"></i> Filter</button>
-                    <a
+                    <button
                       class="btn btn-info dropdown-toggle"
                       data-bs-toggle="dropdown"
-                      style="cursor: pointer;"
-                    ></a>
+                    ></button>
                     <ul class="dropdown-menu">
                       <li>
-                        <a
+                        <span
                           class="dropdown-item"
-                        ><i class="fas fa-times"></i> First filter</a>
+                          style="cursor: pointer;"
+                        ><i class="fas fa-times"></i> First filter</span>
                       </li>
                       <li>
-                        <a
+                        <span
                           class="dropdown-item"
-                        ><i class="fas fa-times"></i> Second filter</a>
+                          style="cursor: pointer;"
+                        ><i class="fas fa-times"></i> Second filter</span>
                       </li>
                     </ul>
                   </div>
@@ -675,6 +677,10 @@ export default [
                     <div class="col-auto">
                       <select class="form-control">
                         <option
+                          value=""
+                          disabled
+                        >⌄</option>
+                        <option
                           value="id"
                           label="id"
                         ></option>
@@ -706,6 +712,10 @@ export default [
                     </div>
                     <div class="col-auto">
                       <select class="form-control">
+                        <option
+                          value=""
+                          disabled
+                        >⌄</option>
                         <option
                           value="x"
                           label="x"
@@ -871,6 +881,10 @@ export default [
                     <div class="col-auto">
                       <select class="form-control">
                         <option
+                          value=""
+                          disabled
+                        >⌄</option>
+                        <option
                           value="id"
                           label="id"
                         ></option>
@@ -887,7 +901,7 @@ export default [
                     <div class="col-auto">
                       <button
                         class="btn btn-warning"
-                      ><i class="fas fa-th"></i> Group</button>
+                      ><i class="fas fa-th"></i> Group: name</button>
                     </div>
                   </div>
                 </th>
@@ -972,21 +986,21 @@ export default [
                 title: 'Id',
                 name: 'id'
               } : {
-                data: String(row.id)
+                data: row.id
               },
             row => 
               row == null ? {
                 title: 'Name',
                 name: 'name'
               } : {
-                data: String(row.name)
+                data: row.name
               },
             row => 
               row == null ? {
                 title: 'Value',
                 name: 'value'
               } : {
-                data: String(row.value)
+                data: row.value
               }
           ]
         },
@@ -997,13 +1011,13 @@ export default [
             <thead>
               <tr>
                 <th class="align-middle text-center">
-                  Id
+                  <span>Id</span>
                 </th>
                 <th class="align-middle text-center">
-                  Name
+                  <span>Name</span>
                 </th>
                 <th class="align-middle text-center">
-                  Value
+                  <span>Value</span>
                 </th>
               </tr>
             </thead>
@@ -1028,21 +1042,21 @@ export default [
                 title: 'Id',
                 name: 'id'
               } : {
-                data: String(row.id)
+                data: row.id
               },
             row => 
               row == null ? {
                 title: 'Name',
                 name: 'name'
               } : {
-                data: String(row.name)
+                data: row.name
               },
             row => 
               row == null ? {
                 title: 'Value',
                 name: 'value'
               } : {
-                data: String(row.value)
+                data: row.value
               }
           ],
           Rows: [
@@ -1059,48 +1073,48 @@ export default [
               <tr>
                 <th
                   class="align-middle text-center"
-                >Id</th>
+                ><span>Id</span></th>
                 <th
                   class="align-middle text-center"
-                >Name</th>
+                ><span>Name</span></th>
                 <th
                   class="align-middle text-center"
-                >Value</th>
+                ><span>Value</span></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td
                   class="align-middle text-center"
-                >1</td>
+                ><span style="white-space: pre-wrap;">1</span></td>
                 <td
                   class="align-middle text-center"
-                >Car</td>
+                ><span style="white-space: pre-wrap;">Car</span></td>
                 <td
                   class="align-middle text-center"
-                >30000</td>
+                ><span style="white-space: pre-wrap;">30000</span></td>
               </tr>
               <tr>
                 <td
                   class="align-middle text-center"
-                >2</td>
+                ><span style="white-space: pre-wrap;">2</span></td>
                 <td
                   class="align-middle text-center"
-                >Bike</td>
+                ><span style="white-space: pre-wrap;">Bike</span></td>
                 <td
                   class="align-middle text-center"
-                >500</td>
+                ><span style="white-space: pre-wrap;">500</span></td>
               </tr>
               <tr>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                >Boat</td>
+                ><span style="white-space: pre-wrap;">Boat</span></td>
                 <td
                   class="align-middle text-center"
-                >200000</td>
+                ><span style="white-space: pre-wrap;">200000</span></td>
               </tr>
             </tbody>
           </table>
@@ -1114,21 +1128,21 @@ export default [
                 title: 'Id',
                 name: 'id'
               } : {
-                data: String(row.id)
+                data: row.id
               },
             row => 
               row == null ? {
                 title: 'Name',
                 name: 'name'
               } : {
-                data: String(row.name)
+                data: row.name
               },
             row => 
               row == null ? {
                 title: 'Value',
                 name: 'value'
               } : {
-                data: String(row.value)
+                data: row.value
               }
           ],
           Rows: [
@@ -1149,59 +1163,59 @@ export default [
               <tr>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                ></td>
+                ><span style="white-space: pre-wrap;"></span></td>
                 <td
                   class="align-middle text-center"
-                >230500</td>
+                ><span style="white-space: pre-wrap;">230500</span></td>
               </tr>
               <tr>
                 <th
                   class="align-middle text-center"
-                >Id</th>
+                ><span>Id</span></th>
                 <th
                   class="align-middle text-center"
-                >Name</th>
+                ><span>Name</span></th>
                 <th
                   class="align-middle text-center"
-                >Value</th>
+                ><span>Value</span></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td
                   class="align-middle text-center"
-                >1</td>
+                ><span style="white-space: pre-wrap;">1</span></td>
                 <td
                   class="align-middle text-center"
-                >Car</td>
+                ><span style="white-space: pre-wrap;">Car</span></td>
                 <td
                   class="align-middle text-center"
-                >30000</td>
+                ><span style="white-space: pre-wrap;">30000</span></td>
               </tr>
               <tr>
                 <td
                   class="align-middle text-center"
-                >2</td>
+                ><span style="white-space: pre-wrap;">2</span></td>
                 <td
                   class="align-middle text-center"
-                >Bike</td>
+                ><span style="white-space: pre-wrap;">Bike</span></td>
                 <td
                   class="align-middle text-center"
-                >500</td>
+                ><span style="white-space: pre-wrap;">500</span></td>
               </tr>
               <tr>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                >Boat</td>
+                ><span style="white-space: pre-wrap;">Boat</span></td>
                 <td
                   class="align-middle text-center"
-                >200000</td>
+                ><span style="white-space: pre-wrap;">200000</span></td>
               </tr>
             </tbody>
           </table>
@@ -1215,21 +1229,21 @@ export default [
                 title: 'Id',
                 name: 'id'
               } : {
-                data: String(row.id)
+                data: row.id
               },
             row => 
               row == null ? {
                 title: 'Name',
                 name: 'name'
               } : {
-                data: String(row.name)
+                data: row.name
               },
             row => 
               row == null ? {
                 title: 'Value',
                 name: 'value'
               } : {
-                data: String(row.value)
+                data: row.value
               }
           ],
           Links: [
@@ -1276,101 +1290,101 @@ export default [
                 ></td>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                ></td>
+                ><span style="white-space: pre-wrap;"></span></td>
                 <td
                   class="align-middle text-center"
-                >230500</td>
+                ><span style="white-space: pre-wrap;">230500</span></td>
               </tr>
               <tr>
                 <th
                   class="align-middle text-center"
-                ><i class="fas fa-trash"></i></th>
+                ><span><i class="fas fa-trash"></i></span></th>
                 <th
                   class="align-middle text-center"
-                >Edit</th>
+                ><span>Edit</span></th>
                 <th
                   class="align-middle text-center"
-                >Id</th>
+                ><span>Id</span></th>
                 <th
                   class="align-middle text-center"
-                >Name</th>
+                ><span>Name</span></th>
                 <th
                   class="align-middle text-center"
-                >Value</th>
+                ><span>Value</span></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/1"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/1"
                   >Edit</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >1</td>
+                ><span style="white-space: pre-wrap;">1</span></td>
                 <td
                   class="align-middle text-center"
-                >Car</td>
+                ><span style="white-space: pre-wrap;">Car</span></td>
                 <td
                   class="align-middle text-center"
-                >30000</td>
+                ><span style="white-space: pre-wrap;">30000</span></td>
               </tr>
               <tr>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/2"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/2"
                   >Edit</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >2</td>
+                ><span style="white-space: pre-wrap;">2</span></td>
                 <td
                   class="align-middle text-center"
-                >Bike</td>
+                ><span style="white-space: pre-wrap;">Bike</span></td>
                 <td
                   class="align-middle text-center"
-                >500</td>
+                ><span style="white-space: pre-wrap;">500</span></td>
               </tr>
               <tr>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/3"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/3"
                   >Edit</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                >Boat</td>
+                ><span style="white-space: pre-wrap;">Boat</span></td>
                 <td
                   class="align-middle text-center"
-                >200000</td>
+                ><span style="white-space: pre-wrap;">200000</span></td>
               </tr>
             </tbody>
           </table>
@@ -1384,21 +1398,21 @@ export default [
                 title: 'Id',
                 name: 'id'
               } : {
-                data: String(row.id)
+                data: row.id
               },
             row => 
               row == null ? {
                 title: 'Name',
                 name: 'name'
               } : {
-                data: String(row.name)
+                data: row.name
               },
             row => 
               row == null ? {
                 title: 'Value',
                 name: 'value'
               } : {
-                data: String(row.value)
+                data: row.value
               }
           ],
           Links: [
@@ -1468,13 +1482,13 @@ export default [
                 ></td>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                ></td>
+                ><span style="white-space: pre-wrap;"></span></td>
                 <td
                   class="align-middle text-center"
-                >230500</td>
+                ><span style="white-space: pre-wrap;">230500</span></td>
               </tr>
               <tr>
                 <th
@@ -1486,109 +1500,120 @@ export default [
                 </th>
                 <th
                   class="align-middle text-center"
-                ><i class="fas fa-trash"></i></th>
+                ><span><i class="fas fa-trash"></i></span></th>
                 <th
                   class="align-middle text-center"
-                >Edit</th>
+                ><span>Edit</span></th>
                 <th
                   class="align-middle text-center"
-                ><span>Id <i class="fas fa-sort"></i></span></th>
+                >
+                  <span
+                    style="cursor: pointer;"
+                  >Id <i class="fas fa-sort"></i></span>
+                </th>
                 <th
                   class="align-middle text-center"
-                ><span>Name <i class="fas fa-sort-up"></i></span></th>
+                >
+                  <span
+                    style="cursor: pointer;"
+                  >Name <i class="fas fa-sort-up"></i></span>
+                </th>
                 <th
                   class="align-middle text-center"
-                ><span>Value <i class="fas fa-sort"></i></span></th>
+                >
+                  <span
+                    style="cursor: pointer;"
+                  >Value <i class="fas fa-sort"></i></span>
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="align-middle text-center">
                   <input
-                    type="checkbox"
                     class="form-check-input"
+                    type="checkbox"
                   />
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/1"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/1"
                   >Edit</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >1</td>
+                ><span style="white-space: pre-wrap;">1</span></td>
                 <td
                   class="align-middle text-center"
-                >Car</td>
+                ><span style="white-space: pre-wrap;">Car</span></td>
                 <td
                   class="align-middle text-center"
-                >30000</td>
+                ><span style="white-space: pre-wrap;">30000</span></td>
               </tr>
               <tr>
                 <td class="align-middle text-center">
                   <input
-                    type="checkbox"
                     class="form-check-input"
-                    checked
+                    type="checkbox"
                   />
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/2"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/2"
                   >Edit</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >2</td>
+                ><span style="white-space: pre-wrap;">2</span></td>
                 <td
                   class="align-middle text-center"
-                >Bike</td>
+                ><span style="white-space: pre-wrap;">Bike</span></td>
                 <td
                   class="align-middle text-center"
-                >500</td>
+                ><span style="white-space: pre-wrap;">500</span></td>
               </tr>
               <tr>
                 <td class="align-middle text-center">
                   <input
-                    type="checkbox"
                     class="form-check-input"
+                    type="checkbox"
                   />
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/3"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/3"
                   >Edit</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                >Boat</td>
+                ><span style="white-space: pre-wrap;">Boat</span></td>
                 <td
                   class="align-middle text-center"
-                >200000</td>
+                ><span style="white-space: pre-wrap;">200000</span></td>
               </tr>
             </tbody>
           </table>
@@ -1602,21 +1627,21 @@ export default [
                 title: 'Id',
                 name: 'id'
               } : {
-                data: String(row.id)
+                data: row.id
               },
             row => 
               row == null ? {
                 title: 'Name',
                 name: 'name'
               } : {
-                data: String(row.name)
+                data: row.name
               },
             row => 
               row == null ? {
                 title: 'Value',
                 name: 'value'
               } : {
-                data: String(row.value)
+                data: row.value
               }
           ],
           Links: [
@@ -1806,7 +1831,7 @@ export default [
             } else if (action == 'options') {
               const p = 4
               const R = []
-              for (i = 1; i <= p; i++) {
+              for (var i = 1; i <= p; i++) {
                 R.push({value: i, label: `Page ${i} of ${p}`})
               }
               return R
@@ -1820,7 +1845,7 @@ export default [
             } else if (action == 'limiters') {
               const L = [5, 10, 25, 50, 100]
               const R = []
-              for (i = 0; i < L.length; i++) {
+              for (var i = 0; i < L.length; i++) {
                 R.push({value: L[i], label: `${L[i]} items per page`})
               }
               return R
@@ -1915,59 +1940,17 @@ export default [
                   class="align-middle text-center"
                   colspan="100%"
                 >
-                  <div class="input-group">
-                    <button
-                      class="btn btn-secondary"
-                    ><i class="fas fa-times"></i></button>
-                    <input
-                      class="form-control"
-                      placeholder="Search"
-                    />
-                    <button
-                      class="btn btn-info"
-                    ><i class="fas fa-filter"></i> Filter</button>
-                    <a
-                      class="btn btn-info dropdown-toggle"
-                      data-bs-toggle="dropdown"
-                      style="cursor: pointer;"
-                    ></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a
-                          class="dropdown-item"
-                        ><i class="fas fa-times"></i> First filter</a>
-                      </li>
-                      <li>
-                        <a
-                          class="dropdown-item"
-                        ><i class="fas fa-times"></i> Second filter</a>
-                      </li>
-                    </ul>
-                    <button
-                      class="btn btn-warning"
-                    ><i class="fas fa-th"></i> Group</button>
-                    <button
-                      class="btn btn-secondary"
-                    ><i class="fas fa-file-csv"></i> Download</button>
-                  </div>
-                </th>
-              </tr>
-              <tr>
-                <th
-                  class="align-middle text-center"
-                  colspan="100%"
-                >
                   <div
                     class="row gx-1 justify-content-center"
                   >
                     <div class="col-auto">
                       <button
-                        class="btn btn-secondary disabled"
+                        class="btn btn-secondary"
                       ><i class="fas fa-fast-backward"></i></button>
                     </div>
                     <div class="col-auto">
                       <button
-                        class="btn btn-secondary disabled"
+                        class="btn btn-secondary"
                       ><i class="fas fa-step-backward"></i></button>
                     </div>
                     <div class="col-auto">
@@ -2028,6 +2011,50 @@ export default [
                 </th>
               </tr>
               <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-secondary"
+                    ><i class="fas fa-times"></i></button>
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Search"
+                    />
+                    <button
+                      class="btn btn-info"
+                    ><i class="fas fa-filter"></i> Filter</button>
+                    <button
+                      class="btn btn-info dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                    ></button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <span
+                          class="dropdown-item"
+                          style="cursor: pointer;"
+                        ><i class="fas fa-times"></i> First filter</span>
+                      </li>
+                      <li>
+                        <span
+                          class="dropdown-item"
+                          style="cursor: pointer;"
+                        ><i class="fas fa-times"></i> Second filter</span>
+                      </li>
+                    </ul>
+                    <button
+                      class="btn btn-warning"
+                    ><i class="fas fa-th"></i> Group</button>
+                    <button
+                      class="btn btn-secondary"
+                    ><i class="fas fa-file-csv"></i> Download</button>
+                  </div>
+                </th>
+              </tr>
+              <tr>
                 <td
                   class="align-middle text-center"
                 ></td>
@@ -2039,13 +2066,13 @@ export default [
                 ></td>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                ></td>
+                ><span style="white-space: pre-wrap;"></span></td>
                 <td
                   class="align-middle text-center"
-                >230500</td>
+                ><span style="white-space: pre-wrap;">230500</span></td>
               </tr>
               <tr>
                 <th
@@ -2057,109 +2084,120 @@ export default [
                 </th>
                 <th
                   class="align-middle text-center"
-                ><i class="fas fa-trash"></i></th>
+                ><span><i class="fas fa-trash"></i></span></th>
                 <th
                   class="align-middle text-center"
-                >Edit</th>
+                ><span>Edit</span></th>
                 <th
                   class="align-middle text-center"
-                ><span>Id <i class="fas fa-sort"></i></span></th>
+                >
+                  <span
+                    style="cursor: pointer;"
+                  >Id <i class="fas fa-sort"></i></span>
+                </th>
                 <th
                   class="align-middle text-center"
-                ><span>Name <i class="fas fa-sort-up"></i></span></th>
+                >
+                  <span
+                    style="cursor: pointer;"
+                  >Name <i class="fas fa-sort-up"></i></span>
+                </th>
                 <th
                   class="align-middle text-center"
-                ><span>Value <i class="fas fa-sort"></i></span></th>
+                >
+                  <span
+                    style="cursor: pointer;"
+                  >Value <i class="fas fa-sort"></i></span>
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="align-middle text-center">
                   <input
-                    type="checkbox"
                     class="form-check-input"
+                    type="checkbox"
                   />
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/1"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/1"
                   >Edit</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >1</td>
+                ><span style="white-space: pre-wrap;">1</span></td>
                 <td
                   class="align-middle text-center"
-                >Car</td>
+                ><span style="white-space: pre-wrap;">Car</span></td>
                 <td
                   class="align-middle text-center"
-                >30000</td>
+                ><span style="white-space: pre-wrap;">30000</span></td>
               </tr>
               <tr>
                 <td class="align-middle text-center">
                   <input
-                    type="checkbox"
                     class="form-check-input"
-                    checked
+                    type="checkbox"
                   />
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/2"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/2"
                   >Edit</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >2</td>
+                ><span style="white-space: pre-wrap;">2</span></td>
                 <td
                   class="align-middle text-center"
-                >Bike</td>
+                ><span style="white-space: pre-wrap;">Bike</span></td>
                 <td
                   class="align-middle text-center"
-                >500</td>
+                ><span style="white-space: pre-wrap;">500</span></td>
               </tr>
               <tr>
                 <td class="align-middle text-center">
                   <input
-                    type="checkbox"
                     class="form-check-input"
+                    type="checkbox"
                   />
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/3"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/3"
                   >Edit</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                >Boat</td>
+                ><span style="white-space: pre-wrap;">Boat</span></td>
                 <td
                   class="align-middle text-center"
-                >200000</td>
+                ><span style="white-space: pre-wrap;">200000</span></td>
               </tr>
             </tbody>
           </table>
@@ -2168,8 +2206,8 @@ export default [
       ]
     ]
   ], [
-    "table pt"
-    (params) => table('pt')(params),
+    "table pt",
+    params => table('pt')(params),
     [
       [
         {
@@ -2179,21 +2217,21 @@ export default [
                 title: 'Id',
                 name: 'id'
               } : {
-                data: String(row.id)
+                data: row.id
               },
             row => 
               row == null ? {
                 title: 'Nome',
                 name: 'name'
               } : {
-                data: String(row.name)
+                data: row.name
               },
             row => 
               row == null ? {
                 title: 'Valor',
                 name: 'value'
               } : {
-                data: String(row.value)
+                data: row.value
               }
           ],
           Links: [
@@ -2383,7 +2421,7 @@ export default [
             } else if (action == 'options') {
               const p = 4
               const R = []
-              for (i = 1; i <= p; i++) {
+              for (var i = 1; i <= p; i++) {
                 R.push({value: i, label: `Página ${i} de ${p}`})
               }
               return R
@@ -2397,7 +2435,7 @@ export default [
             } else if (action == 'limiters') {
               const L = [5, 10, 25, 50, 100]
               const R = []
-              for (i = 0; i < L.length; i++) {
+              for (var i = 0; i < L.length; i++) {
                 R.push({value: L[i], label: `${L[i]} itens por página`})
               }
               return R
@@ -2492,59 +2530,17 @@ export default [
                   class="align-middle text-center"
                   colspan="100%"
                 >
-                  <div class="input-group">
-                    <button
-                      class="btn btn-secondary"
-                    ><i class="fas fa-times"></i></button>
-                    <input
-                      class="form-control"
-                      placeholder="Buscar"
-                    />
-                    <button
-                      class="btn btn-info"
-                    ><i class="fas fa-filter"></i> Filter</button>
-                    <a
-                      class="btn btn-info dropdown-toggle"
-                      data-bs-toggle="dropdown"
-                      style="cursor: pointer;"
-                    ></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a
-                          class="dropdown-item"
-                        ><i class="fas fa-times"></i> Primeiro filtro</a>
-                      </li>
-                      <li>
-                        <a
-                          class="dropdown-item"
-                        ><i class="fas fa-times"></i> Segundo filtro</a>
-                      </li>
-                    </ul>
-                    <button
-                      class="btn btn-warning"
-                    ><i class="fas fa-th"></i> Agrupar</button>
-                    <button
-                      class="btn btn-secondary"
-                    ><i class="fas fa-file-csv"></i> Exportar</button>
-                  </div>
-                </th>
-              </tr>
-              <tr>
-                <th
-                  class="align-middle text-center"
-                  colspan="100%"
-                >
                   <div
                     class="row gx-1 justify-content-center"
                   >
                     <div class="col-auto">
                       <button
-                        class="btn btn-secondary disabled"
+                        class="btn btn-secondary"
                       ><i class="fas fa-fast-backward"></i></button>
                     </div>
                     <div class="col-auto">
                       <button
-                        class="btn btn-secondary disabled"
+                        class="btn btn-secondary"
                       ><i class="fas fa-step-backward"></i></button>
                     </div>
                     <div class="col-auto">
@@ -2605,6 +2601,50 @@ export default [
                 </th>
               </tr>
               <tr>
+                <th
+                  class="align-middle text-center"
+                  colspan="100%"
+                >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-secondary"
+                    ><i class="fas fa-times"></i></button>
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Buscar"
+                    />
+                    <button
+                      class="btn btn-info"
+                    ><i class="fas fa-filter"></i> Filtrar</button>
+                    <button
+                      class="btn btn-info dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                    ></button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <span
+                          class="dropdown-item"
+                          style="cursor: pointer;"
+                        ><i class="fas fa-times"></i> Primeiro filtro</span>
+                      </li>
+                      <li>
+                        <span
+                          class="dropdown-item"
+                          style="cursor: pointer;"
+                        ><i class="fas fa-times"></i> Segundo filtro</span>
+                      </li>
+                    </ul>
+                    <button
+                      class="btn btn-warning"
+                    ><i class="fas fa-th"></i> Agrupar</button>
+                    <button
+                      class="btn btn-secondary"
+                    ><i class="fas fa-file-csv"></i> Exportar</button>
+                  </div>
+                </th>
+              </tr>
+              <tr>
                 <td
                   class="align-middle text-center"
                 ></td>
@@ -2616,13 +2656,13 @@ export default [
                 ></td>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                ></td>
+                ><span style="white-space: pre-wrap;"></span></td>
                 <td
                   class="align-middle text-center"
-                >230500</td>
+                ><span style="white-space: pre-wrap;">230500</span></td>
               </tr>
               <tr>
                 <th
@@ -2634,109 +2674,120 @@ export default [
                 </th>
                 <th
                   class="align-middle text-center"
-                ><i class="fas fa-trash"></i></th>
+                ><span><i class="fas fa-trash"></i></span></th>
                 <th
                   class="align-middle text-center"
-                >Edit</th>
+                ><span>Atualizar</span></th>
                 <th
                   class="align-middle text-center"
-                ><span>Id <i class="fas fa-sort"></i></span></th>
+                >
+                  <span
+                    style="cursor: pointer;"
+                  >Id <i class="fas fa-sort"></i></span>
+                </th>
                 <th
                   class="align-middle text-center"
-                ><span>Nome <i class="fas fa-sort-up"></i></span></th>
+                >
+                  <span
+                    style="cursor: pointer;"
+                  >Nome <i class="fas fa-sort-up"></i></span>
+                </th>
                 <th
                   class="align-middle text-center"
-                ><span>Valor <i class="fas fa-sort"></i></span></th>
+                >
+                  <span
+                    style="cursor: pointer;"
+                  >Valor <i class="fas fa-sort"></i></span>
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="align-middle text-center">
                   <input
-                    type="checkbox"
                     class="form-check-input"
+                    type="checkbox"
                   />
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/1"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/1"
                   >Atualizar</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >1</td>
+                ><span style="white-space: pre-wrap;">1</span></td>
                 <td
                   class="align-middle text-center"
-                >Carro</td>
+                ><span style="white-space: pre-wrap;">Carro</span></td>
                 <td
                   class="align-middle text-center"
-                >30000</td>
+                ><span style="white-space: pre-wrap;">30000</span></td>
               </tr>
               <tr>
                 <td class="align-middle text-center">
                   <input
-                    type="checkbox"
                     class="form-check-input"
-                    checked
+                    type="checkbox"
                   />
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/2"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/2"
                   >Atualizar</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >2</td>
+                ><span style="white-space: pre-wrap;">2</span></td>
                 <td
                   class="align-middle text-center"
-                >Bicicleta</td>
+                ><span style="white-space: pre-wrap;">Bicicleta</span></td>
                 <td
                   class="align-middle text-center"
-                >500</td>
+                ><span style="white-space: pre-wrap;">500</span></td>
               </tr>
               <tr>
                 <td class="align-middle text-center">
                   <input
-                    type="checkbox"
                     class="form-check-input"
+                    type="checkbox"
                   />
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     href="delete/3"
                   ><i class="fas fa-trash"></i></a>
                 </td>
                 <td class="align-middle text-center">
                   <a
-                    class="btn btn-warning"
+                    class="btn btn-warning btn-sm"
                     href="put/3"
                   >Atualizar</a>
                 </td>
                 <td
                   class="align-middle text-center"
-                >3</td>
+                ><span style="white-space: pre-wrap;">3</span></td>
                 <td
                   class="align-middle text-center"
-                >Barco</td>
+                ><span style="white-space: pre-wrap;">Barco</span></td>
                 <td
                   class="align-middle text-center"
-                >200000</td>
+                ><span style="white-space: pre-wrap;">200000</span></td>
               </tr>
             </tbody>
           </table>
