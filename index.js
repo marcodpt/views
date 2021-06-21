@@ -6,13 +6,21 @@ import form from './src/form.js'
 import table from './src/table.js'
 import nav from './src/nav.js'
 
+const f = form()
+const f_pt = form('pt')
+
+const t = table()
+const t_pt = table('pt')
+
 export {
   fas,
   spinner,
   data,
   link,
   field,
-  form,
-  table,
+  f as form,
+  f_pt as form_pt,
+  t as table,
+  t_pt as table_pt,
   nav
 }

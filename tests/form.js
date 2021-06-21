@@ -1,5 +1,5 @@
 import {html} from '../lib.js'
-import {form} from '../index.js'
+import {form, form_pt} from '../index.js'
 
 const back = state => {
   return [state, [() => alert("back")]]
@@ -16,7 +16,7 @@ const blur = state => {
 export default [
   [
     "form",
-    (params) => form()(params),
+    (params) => form(params),
     [
       [
         {},
@@ -791,7 +791,7 @@ export default [
     ]
   ], [
     "form pt",
-    (params) => form('pt')(params),
+    (params) => form_pt(params),
     [
       [
         {

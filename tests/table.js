@@ -1,5 +1,5 @@
 import {html} from '../lib.js'
-import {table} from '../index.js'
+import {table, table_pt} from '../index.js'
 
 const back = state => {
   return [state, [() => alert("back")]]
@@ -12,7 +12,7 @@ const click = state => {
 export default [
   [
     "table",
-    (params) => table()(params),
+    (params) => table(params),
     [
       [
         {},
@@ -2207,7 +2207,7 @@ export default [
     ]
   ], [
     "table pt",
-    params => table('pt')(params),
+    params => table_pt(params),
     [
       [
         {
