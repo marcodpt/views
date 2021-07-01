@@ -61,16 +61,8 @@ window.addEventListener('load', () => app({
     sample,
     params,
     error
-  }) => {
-    console.log({
-      view,
-      views, 
-      samples,
-      sample,
-      params,
-      error
-    })
-    return h('body', {}, [
+  }) => 
+    h('body', {}, [
       h('div', {
         class: 'container mt-5'
       }, [
@@ -145,8 +137,7 @@ window.addEventListener('load', () => app({
       ]),
       h('hr', {}),
       error ? null : views[view](params)
-    ])
-  },
+    ]),
   node: document.body
 }))
 
