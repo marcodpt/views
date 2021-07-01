@@ -3,24 +3,24 @@ import {data} from '../index.js'
 export default [
   [
     "data",
-    (params) => data(params),
+    (h, text) => data,
     [
       [
         {},
-        `<span style="white-space: pre-wrap;"/>`,
+        `<span style="white-space:pre-wrap"></span>`,
         "no params"
       ], [
         {
           data: "Hello world!"
         },
-        `<span style="white-space: pre-wrap;">Hello world!</span>`,
+        `<span style="white-space:pre-wrap">Hello world!</span>`,
         "simple data"
       ], [
         {
           data: "Hello world!\nMy name is mario!\nFrom super mario world!"
         },
         `<span
-          style="white-space: pre-wrap;"
+          style="white-space:pre-wrap"
         >Hello world!\nMy name is mario!\nFrom super mario world!</span>`,
         "long data"
       ], [
@@ -32,7 +32,7 @@ export default [
           class="alert alert-info"
           role="alert"
         ><span
-          style="white-space: pre-wrap;"
+          style="white-space:pre-wrap"
         >Hello world!</span></div>`,
         "simple alert"
       ], [
@@ -48,7 +48,7 @@ export default [
           class="alert alert-info alert-dismissible"
           role="alert"
         ><span
-          style="white-space: pre-wrap;"
+          style="white-space:pre-wrap"
         >Hello world!</span><button class="btn-close"></button></div>`,
         "simple alert with close"
       ], [
@@ -60,7 +60,7 @@ export default [
           class="alert alert-success"
           role="alert"
         ><span
-          style="white-space: pre-wrap;"
+          style="white-space:pre-wrap"
         >Hello world!\nMy name is mario!\nFrom super mario world!</span></div>`,
         "long alert"
       ], [
@@ -69,7 +69,7 @@ export default [
         },
         `<a
           href="#hello"
-          style="white-space: pre-wrap;"
+          style="white-space:pre-wrap"
         >_</a>`,
         "empty link"
       ], [
@@ -79,7 +79,7 @@ export default [
         },
         `<a
           href="#hello"
-          style="white-space: pre-wrap;"
+          style="white-space:pre-wrap"
         >Hello world!</a>`,
         "simple link"
       ], [
@@ -93,7 +93,7 @@ export default [
           role="alert"
         ><a
           href="#hello"
-          style="white-space: pre-wrap;"
+          style="white-space:pre-wrap"
         >Hello world!</a></div>`,
         "simple link alert"
       ], [
@@ -105,7 +105,7 @@ export default [
         `<a
           href="#hello"
           title="msg"
-          style="white-space: pre-wrap;"
+          style="white-space:pre-wrap"
         >Hello world!</a>`,
         "link with title"
       ], [
@@ -118,7 +118,7 @@ export default [
         `<a
           href="#hello"
           title="msg"
-          style="white-space: pre-wrap; word-break: break-all;"
+          style="white-space:pre-wrap;word-break:break-all"
         >Hello world!</a>`,
         "link with title and mime"
       ], [
@@ -133,7 +133,7 @@ export default [
           href="data:text/csv;charset=utf-8,my%20data"
           title="Get your data!"
           download="download.csv"
-          style="white-space: pre-wrap; word-break: break-all;"
+          style="white-space:pre-wrap;word-break:break-all"
         >Get your data!</a>`,
         "link with download"
       ], [

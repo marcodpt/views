@@ -1,24 +1,20 @@
-import {h, text, app} from 'https://unpkg.com/hyperapp'
+import {
+  h, text, app
+} from 'https://cdn.jsdelivr.net/npm/hyperapp@2.0.18/index.min.js'
 import icon from './tests/icon.js'
 import data from './tests/data.js'
 import link from './tests/link.js'
 import field from './tests/field.js'
-import form from './tests/form.js'
-import table from './tests/table.js'
-import nav from './tests/nav.js'
 
 const Tests = []
   .concat(icon)
   .concat(data)
   .concat(link)
   .concat(field)
-  .concat(form)
-  .concat(table)
-  .concat(nav)
 
 const state = {
   views: Tests.reduce((V, test) => {
-    V[test[0]] = test[1]
+    V[test[0]] = test[1](h, text)
     return V
   }, {}),
   samples: Tests.reduce((S, test) => {
@@ -79,11 +75,6 @@ window.addEventListener('load', () => app({
         class: 'container mt-5'
       }, [
         h('h1', {}, text('Views')),
-        h('p', {}, [
-          h('a', {
-            href: "tests.html"
-          }, text('tests!'))
-        ]),
         h('div', {
           class: 'mb-3'
         }, [

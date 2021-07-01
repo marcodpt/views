@@ -24,7 +24,7 @@ const showCheck = (state, ev) => {
 export default [
   [
     "field",
-    (params) => field(params),
+    (h, text) => field,
     [
       [
         {},
@@ -55,6 +55,7 @@ export default [
         `<input
           class="form-control is-valid"
           type="text"
+          value="testing"
           name="test"
         />`,
         "changeable text input"
@@ -69,9 +70,9 @@ export default [
         `<input
           class="form-control is-invalid"
           type="text"
+          value="testing"
           name="test"
-          disabled
-        />`,
+          disabled/>`,
         "disabled text input"
       ], [
         {
@@ -97,6 +98,7 @@ export default [
         `<input
           class="form-control is-valid"
           type="date"
+          value="2021-07-15"
           name="test"
         />`,
         "changeable date input"
@@ -112,9 +114,9 @@ export default [
         `<input
           class="form-control is-invalid"
           type="date"
+          value="2021-07-15"
           name="test"
-          disabled
-        />`,
+          disabled/>`,
         "disabled date input"
       ], [
         {
@@ -158,8 +160,7 @@ export default [
           type="file"
           name="test"
           placeholder="..."
-          disabled
-        />`,
+          disabled/>`,
         "disabled file input"
       ], [
         {
@@ -172,8 +173,7 @@ export default [
           type="file"
           name="test"
           placeholder="..."
-          multiple
-        />`,
+          multiple/>`,
         "files input"
       ], [
         {
@@ -188,8 +188,7 @@ export default [
           type="file"
           name="test"
           placeholder="..."
-          multiple
-        />`,
+          multiple/>`,
         "changeable files input"
       ], [
         {
@@ -206,8 +205,7 @@ export default [
           name="test"
           placeholder="..."
           disabled
-          multiple
-        />`,
+          multiple/>`,
         "disabled files input"
       ], [
         {
@@ -236,6 +234,7 @@ export default [
         `<input
           class="form-control is-valid"
           type="number"
+          value="2.7"
           name="test"
           step="0.1"
         />`,
@@ -253,6 +252,7 @@ export default [
         `<input
           class="form-control is-invalid"
           type="number"
+          value="2.7"
           name="test"
           disabled
           step="0.1"
@@ -292,6 +292,7 @@ export default [
         `<input
           class="form-control is-valid"
           type="range"
+          value="9"
           name="test"
           placeholder=""
           step="1"
@@ -315,6 +316,7 @@ export default [
         `<input
           class="form-control is-invalid"
           type="range"
+          value="9"
           name="test"
           placeholder=""
           disabled
@@ -349,7 +351,7 @@ export default [
           type="checkbox"
           value="mario"
           name="test"
-        />`,
+          checked/>`,
         "checked changeable checkbox input"
       ], [
         {
@@ -367,7 +369,7 @@ export default [
           value="mario"
           name="test"
           disabled
-        />`,
+          checked/>`,
         "checked disabled checkbox input"
       ], [
         {
@@ -395,7 +397,7 @@ export default [
           type="radio"
           value="luigi"
           name="test"
-        />`,
+          checked/>`,
         "checked changeable radio input"
       ], [
         {
@@ -413,7 +415,7 @@ export default [
           value="luigi"
           name="test"
           disabled
-        />`,
+          checked/>`,
         "checked disabled radio input"
       ], [
         {
@@ -439,6 +441,7 @@ export default [
         `<input
           class="form-control is-valid"
           type="color"
+          value="#000000"
           name="test"
         />`,
         "changeable color input"
@@ -454,9 +457,9 @@ export default [
         `<input
           class="form-control is-invalid"
           type="color"
+          value="#000000"
           name="test"
-          disabled
-        />`,
+          disabled/>`,
         "disabled color input"
       ], [
         {
@@ -469,7 +472,7 @@ export default [
           name="test"
           placeholder="..."
           rows="6"
-        />`,
+        ></textarea>`,
         "textarea"
       ], [
         {
@@ -486,7 +489,8 @@ export default [
           name="test"
           placeholder=""
           rows="4"
-        />`,
+          value="Hello,\nmy name is Mario!"
+        ></textarea>`,
         "changeable textarea"
       ], [
         {
@@ -505,7 +509,8 @@ export default [
           placeholder=""
           rows="4"
           disabled
-        />`,
+          value="Hello,\nmy name is Mario!"
+        ></textarea>`,
         "disabled textarea"
       ], [
         {
@@ -515,10 +520,11 @@ export default [
         `<select
           class="form-control"
           name="test"
+          value=""
         ><option
           value=""
-          disabled
-        >\u2304</option><option
+          selected
+          disabled>\u2304</option><option
           value="car"
           label="car"
         ></option><option
@@ -538,10 +544,11 @@ export default [
           class="form-control"
           name="test"
           disabled
+          value=""
         ><option
           value=""
-          disabled
-        >\u231B</option></select>`,
+          selected
+          disabled>\u231B</option></select>`,
         "loading select"
       ], [
         {
@@ -553,10 +560,11 @@ export default [
           class="form-control"
           name="test"
           disabled
+          value="plane"
         ><option
           value="plane"
-          disabled
-        >\u231B</option></select>`,
+          selected
+          disabled>\u231B</option></select>`,
         "loading select with value"
       ], [
         {
@@ -572,6 +580,7 @@ export default [
         `<select
           class="form-control"
           name="test"
+          value="3"
         ><option
           value="1"
           label="car"
@@ -602,6 +611,7 @@ export default [
         `<select
           class="form-control is-valid"
           name="test"
+          value="3"
         ><option
           value="1"
           label="car"
@@ -634,6 +644,7 @@ export default [
           class="form-control is-invalid"
           name="test"
           disabled
+          value="3"
         ><option
           value="1"
           label="car"

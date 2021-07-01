@@ -37,7 +37,7 @@ export default ({
   }, [
     iconA,
     iconA && (title || iconB) ? text(' ') : null,
-    text(title),
+    !title ? null : text(title),
     iconB && title ? text(' ') : null,
     iconB
   ])

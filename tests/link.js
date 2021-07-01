@@ -8,11 +8,11 @@ const modal = msg => state => {
 export default [
   [
     "link",
-    (params) => link(params),
+    (h, text) => link,
     [
       [
         {},
-        `<span/>`,
+        `<span></span>`,
         "no params"
       ], [
         {
@@ -25,13 +25,13 @@ export default [
           title: "test",
           click: modal('test')
         },
-        `<span style="cursor: pointer;">test</span>`,
+        `<span style="cursor:pointer">test</span>`,
         "simple clickable"
       ], [
         {
           type: "primary"
         },
-        `<button class="btn btn-primary disabled"/>`,
+        `<button class="btn btn-primary disabled"></button>`,
         "empty button"
       ], [
         {
@@ -57,7 +57,7 @@ export default [
         },
         `<button
           class="btn btn-primary"
-        >Say hello <i class="fas fa-exclamation"/></button>`,
+        >Say hello <i class="fas fa-exclamation"></i></button>`,
         "Hello button exclamation"
       ], [
         {
@@ -103,7 +103,7 @@ export default [
           href: "#link",
           icon: 'times'
         },
-        `<a href="#link"><i class="fas fa-times"/></a>`,
+        `<a href="#link"><i class="fas fa-times"></i></a>`,
         "close link"
       ], [
         {
@@ -114,7 +114,7 @@ export default [
         `<a
           class="float-right"
           href="#link"
-        ><i class="fas fa-times"/></a>`,
+        ><i class="fas fa-times"></i></a>`,
         "close link on right"
       ], [
         {
@@ -124,7 +124,7 @@ export default [
         `<span
           class="dropdown-toggle"
           data-bs-toggle="dropdown"
-          style="cursor: pointer;"
+          style="cursor:pointer"
         >dropdown</span>`,
         "dropdown"
       ], [

@@ -61,7 +61,7 @@ export default ({
         whiteSpace: 'pre-wrap',
         wordBreak: mime ? 'break-all' : null
       }
-    }, text(name ? title : data))
+    }, name ? (!title ? null : text(title)) : (!data ? null : text(data)))
 
     return !type ? el : h('div', {
       class: [

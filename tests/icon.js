@@ -3,7 +3,7 @@ import {fas, spinner} from '../index.js'
 export default [
   [
     "fas",
-    (params) => fas(params),
+    (h, text) => fas,
     [
       [
         {},
@@ -13,7 +13,7 @@ export default [
         {name: 'icons'},
         `<i
           class="fas fa-icons"
-        />`,
+        ></i>`,
         "icons"
       ], [
         {
@@ -22,7 +22,7 @@ export default [
         }, 
         `<i
           class="fas fa-user fa-3x"
-        />`,
+        ></i>`,
         "big user"
       ], [
         {
@@ -31,7 +31,7 @@ export default [
         },
         `<i
           class="fas fa-spinner fa-spin"
-        />`,
+        ></i>`,
         "spinner"
       ], [
         {
@@ -41,19 +41,19 @@ export default [
         },
         `<i
           class="fas fa-spinner fa-spin fa-5x"
-        />`,
+        ></i>`,
         "huge spinner"
       ]
     ]
   ], [
     "spinner",
-    (params) => spinner(params),
+    (h, text) => spinner,
     [
       [
         {},
         `<i
           class="fas fa-spinner fa-spin"
-        />`,
+        ></i>`,
         "no params"
       ], [
         {
@@ -61,7 +61,7 @@ export default [
         },
         `<i
           class="fas fa-spinner fa-spin fa-5x"
-        />`,
+        ></i>`,
         "huge"
       ]
     ]
