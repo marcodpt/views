@@ -520,7 +520,6 @@ export default [
         `<select
           class="form-control"
           name="test"
-          value=""
         ><option
           value="car"
           label="car"
@@ -543,9 +542,7 @@ export default [
         `<select
           class="form-control"
           name="test"
-          disabled
-          value=""
-        ><option
+          disabled><option
           value=""
           selected
           disabled>\u231B</option></select>`,
@@ -559,9 +556,7 @@ export default [
         `<select
           class="form-control"
           name="test"
-          disabled
-          value="plane"
-        ><option
+          disabled><option
           value="plane"
           selected
           disabled>\u231B</option></select>`,
@@ -580,7 +575,6 @@ export default [
         `<select
           class="form-control"
           name="test"
-          value="3"
         ><option
           value="1"
           label="car"
@@ -590,7 +584,7 @@ export default [
         ></option><option
           value="3"
           label="plane"
-        ></option><option
+          selected></option><option
           value="4"
           label="skate"
         ></option></select>`,
@@ -611,7 +605,6 @@ export default [
         `<select
           class="form-control is-valid"
           name="test"
-          value="3"
         ><option
           value="1"
           label="car"
@@ -621,7 +614,7 @@ export default [
         ></option><option
           value="3"
           label="plane"
-        ></option><option
+          selected></option><option
           value="4"
           label="skate"
         ></option></select>`,
@@ -643,9 +636,7 @@ export default [
         `<select
           class="form-control is-invalid"
           name="test"
-          disabled
-          value="3"
-        ><option
+          disabled><option
           value="1"
           label="car"
         ></option><option
@@ -654,7 +645,7 @@ export default [
         ></option><option
           value="3"
           label="plane"
-        ></option><option
+          selected></option><option
           value="4"
           label="skate"
         ></option></select>`,

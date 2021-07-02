@@ -31,10 +31,8 @@ const select = ({
     ],
     name: name,
     disabled: disabled || options == null,
-    onchange: change,
-    value: value == null ? '' : value
+    onchange: change
   }, (options || []).reduce((O, o, i) => {
-    var s = false
     var val = null
     var lbl = ''
     if (o && typeof o == 'object') {
@@ -56,14 +54,15 @@ const select = ({
       lbl = o == null ? '' : o
     }
     const l = O.length
-    if (l > i && (value != null && value == val)) {
-      O.pop()
-      s = true
-    }
-    const X = h('option', {
+    const P = {
       value: val,
       label: lbl
-    }) 
+    }
+    if (l > i && (value != null && value == val)) {
+      O.pop()
+      P.selected = true
+    }
+    const X = h('option', P) 
     l > i ? O.splice(l - 1, 0, X) : O.push(X)
     return O
   }, [
