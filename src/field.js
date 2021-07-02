@@ -55,16 +55,16 @@ const select = ({
       val = o
       lbl = o == null ? '' : o
     }
-    if (O.length > i && (value != null && value == val)) {
-      O.shift()
+    const l = O.length
+    if (l > i && (value != null && value == val)) {
+      O.pop()
       s = true
     }
-    O.push(
-      h('option', {
-        value: val,
-        label: lbl
-      })
-    )
+    const X = h('option', {
+      value: val,
+      label: lbl
+    }) 
+    l > i ? O.splice(l - 1, 0, X) : O.push(X)
     return O
   }, [
     h('option', {

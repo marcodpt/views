@@ -522,9 +522,6 @@ export default [
           name="test"
           value=""
         ><option
-          value=""
-          selected
-          disabled>\u2304</option><option
           value="car"
           label="car"
         ></option><option
@@ -533,7 +530,10 @@ export default [
         ></option><option
           value="plane"
           label="plane"
-        ></option></select>`,
+        ></option><option
+          value=""
+          selected
+          disabled>\u2304</option></select>`,
         "simple select"
       ], [
         {
