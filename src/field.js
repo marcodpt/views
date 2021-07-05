@@ -113,13 +113,6 @@ const input = ({
     'radio'
   ].indexOf(type) != -1
 
-  const isChange = [
-    'file',
-    'files',
-    'date',
-    'range'
-  ].indexOf(type) != -1
-
   const isRange = [
     'number',
     'date',
@@ -143,12 +136,11 @@ const input = ({
       !isCheck ? status : null
     ],
     type: type == 'files' ? 'file' : (type || 'text'),
-    value: value,
+    value: type == 'files' || type == 'file' ? null : value,
     name: name,
     placeholder: isCheck ? null : placeholder,
     disabled: disabled,
-    onchange: isChange ? change : null,
-    oninput: isCheck || isCheck ? null : change,
+    oninput: isCheck ? null : change,
     onclick: isCheck ? change : null,
     checked: isCheck ? checked : null,
     multiple: type == 'files' ? true : null,
