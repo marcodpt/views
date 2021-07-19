@@ -38,14 +38,10 @@ const select = ({
     if (o && typeof o == 'object') {
       if (o.value != null) {
         val = o.value
-      } else if (o.id != null) {
-        val = o.id
       }
 
       if (o.label != null) {
         lbl = o.label
-      } else if (o.id_ != null) {
-        lbl = o.id_
       } else {
         lbl = val
       }

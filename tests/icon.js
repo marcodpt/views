@@ -43,6 +43,42 @@ export default [
           class="fas fa-spinner fa-spin fa-5x"
         ></i>`,
         "huge spinner"
+      ], [
+        {
+          name: '@github'
+        }, 
+        `<i
+          class="fab fa-github"
+        ></i>`,
+        "github brand icon"
+      ], [
+        {
+          name: '@google',
+          size: '3x'
+        }, 
+        `<i
+          class="fab fa-google fa-3x"
+        ></i>`,
+        "google brand icon"
+      ], [
+        {
+          name: '@facebook',
+          spin: true
+        }, 
+        `<i
+          class="fab fa-facebook fa-spin"
+        ></i>`,
+        "facebook brand icon"
+      ], [
+        {
+          name: '@amazon',
+          spin: true,
+          size: '2x'
+        }, 
+        `<i
+          class="fab fa-amazon fa-spin fa-2x"
+        ></i>`,
+        "amazon brand icon"
       ]
     ]
   ], [

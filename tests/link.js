@@ -184,6 +184,35 @@ export default [
           class="btn btn-info"
         ><i class="fas fa-check"></i> Click me!</button>`,
         "click"
+      ], [
+        {
+          title: 'Insert',
+          icon: 'pencil-alt'
+        },
+        `<span><i class="fas fa-pencil-alt"></i> Insert</span>`,
+        "Insert"
+      ], [
+        {
+          title: 'Insert',
+          icon: 'pencil-alt',
+          href: '#post'
+        },
+        `<a
+          href="#post"
+        ><i class="fas fa-pencil-alt"></i> Insert</a>`,
+        "Insert link"
+      ], [
+        {
+          title: 'Insert',
+          type: 'success',
+          icon: 'pencil-alt',
+          href: '#post'
+        },
+        `<a
+          class="btn btn-success"
+          href="#post"
+        ><i class="fas fa-pencil-alt"></i> Insert</a>`,
+        "Insert button"
       ]
     ]
   ]

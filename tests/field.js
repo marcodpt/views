@@ -566,9 +566,9 @@ export default [
           name: "test",
           options: [
             {value: 1, label: 'car'}, 
-            {id: 2, id_: 'bike'},
-            {id: 3, label: 'plane'},
-            {value: 4, id_: 'skate'}
+            {value: 2, label: 'bike'},
+            {value: 3, label: 'plane'},
+            {value: 4, label: 'skate'}
           ],
           value: 3
         },
@@ -594,9 +594,9 @@ export default [
           name: "test",
           options: [
             {value: 1, label: 'car'}, 
-            {id: 2, id_: 'bike'},
-            {id: 3, label: 'plane'},
-            {value: 4, id_: 'skate'}
+            {value: 2, label: 'bike'},
+            {value: 3, label: 'plane'},
+            {value: 4, label: 'skate'}
           ],
           value: 3,
           change: showVal,
@@ -624,9 +624,9 @@ export default [
           name: "test",
           options: [
             {value: 1, label: 'car'}, 
-            {id: 2, id_: 'bike'},
-            {id: 3, label: 'plane'},
-            {value: 4, id_: 'skate'}
+            {value: 2, label: 'bike'},
+            {value: 3, label: 'plane'},
+            {value: 4, label: 'skate'}
           ],
           value: 3,
           change: showVal,
