@@ -114,7 +114,7 @@ data({
 // />
 
 field({}),
-<input class="form-control" type="text" />
+// <input class="form-control" type="text" />
 
 field({
   name: "test",
