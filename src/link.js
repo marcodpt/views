@@ -12,7 +12,8 @@ export default ({
   after,
   pending,
   dropdown,
-  cls 
+  cls,
+  description
 }) => {
   title = (title == null ? '' : String(title)).trim() ||
     (!icon && !type && href ? '_' : '')
@@ -33,7 +34,8 @@ export default ({
     'data-bs-toggle': dropdown ? 'dropdown' : null,
     style: {
       cursor: !type && (dropdown || click) ? 'pointer' : null
-    }
+    },
+    title: description
   }, [
     iconA,
     iconA && (title || iconB) ? text(' ') : null,

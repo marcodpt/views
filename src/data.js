@@ -10,7 +10,8 @@ export default ({
   type,
   title,
   src,
-  close
+  close,
+  format
 }) => {
   const M = mime ? mime.split('/').shift() : ''
   data = data == null ? '' : String(data)
@@ -52,6 +53,14 @@ export default ({
       })
     ])
   } else {
+    if (
+      format == "date" &&
+      typeof data == "string" &&
+      /^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])/.test(data)
+    ) {
+      data = new Date(data).toLocaleDateString()
+    }
+
     data = !data.trim().length && href ? '_' : data
     const el = h(href || name ? 'a' : 'span', {
       href: name ? src : (href || null),

@@ -23,16 +23,8 @@ const select = ({
   status,
   options,
   change
-}) => 
-  h('select', {
-    class: [
-      'form-control',
-      status
-    ],
-    name: name,
-    disabled: disabled || options == null,
-    onchange: change
-  }, (options || []).reduce((O, o, i) => {
+}) =>  {
+  const O = (options || []).reduce((O, o, i) => {
     var val = null
     var lbl = ''
     if (o && typeof o == 'object') {
@@ -67,7 +59,19 @@ const select = ({
       selected: true,
       disabled: true
     }, text(options ? (placeholder || '\u2304') : '\u231B'))
-  ]))
+  ])
+
+  return h('select', {
+    class: [
+      'form-control',
+      status
+    ],
+    name: name,
+    disabled: disabled || options == null || O.length < 2,
+    onchange: change
+  }, O)
+}
+  
 
 const textarea = ({
   name,
